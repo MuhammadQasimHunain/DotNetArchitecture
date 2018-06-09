@@ -142,7 +142,7 @@
 
 4. Press **F5** to **run and fun**!
 
-## Publish and Run in IIS
+## Deploy to IIS
 
 1. Install **.NET Core 2.1 Runtime**: <https://www.microsoft.com/net/download/windows>.
 
