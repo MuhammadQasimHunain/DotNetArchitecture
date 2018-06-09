@@ -36,7 +36,9 @@
 	</Target>
 	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
 		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run restore" />
-		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run production" />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run staging" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == 'Staging' " />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run production" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == 'Production' " />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run production" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == '' " />
 		<ItemGroup>
 			<DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
 			<DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
