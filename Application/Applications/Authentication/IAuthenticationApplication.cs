@@ -6,10 +6,6 @@ namespace Solution.Application.Applications
 	{
 		AuthenticatedModel Authenticate(AuthenticationModel authentication);
 
-		string AuthenticateCreateJwt(AuthenticationModel authentication);
-
-		string CreateJwt(AuthenticatedModel authenticated);
-
 		void Logout(long userId);
 	}
 }

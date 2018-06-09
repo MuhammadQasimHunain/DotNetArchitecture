@@ -1,4 +1,5 @@
 using System.Linq;
+using Solution.CrossCutting.Mapping;
 using Solution.CrossCutting.Security;
 using Solution.Infrastructure.Database;
 using Solution.Model.Enums;
@@ -29,34 +30,34 @@ namespace Solution.Domain.Domains
 		{
 			new AuthenticationValidation().ValidateThrowException(authentication);
 
-			authentication.Login = Hash.Create(authentication.Login);
-			authentication.Password = Hash.Create(authentication.Password);
+			CreateHash(authentication);
 
 			var authenticated = Database.User.Authenticate(authentication);
 
 			new AuthenticatedValidation().ValidateThrowException(authenticated);
 
-			var userLog = UserLog.Create(authenticated.UserId, LogType.Login);
-			UserLog.AddSaveChanges(userLog);
+			CreateJwt(authenticated);
+
+			UserLog.Save(authenticated.UserId, LogType.Login);
 
 			return authenticated;
 		}
 
-		public string AuthenticateCreateJwt(AuthenticationModel authentication)
-		{
-			return CreateJwt(Authenticate(authentication));
-		}
-
-		public string CreateJwt(AuthenticatedModel authenticated)
-		{
-			var roles = authenticated.Roles.Select(role => role.ToString()).ToArray();
-			return JsonWebToken.Encode(authenticated.UserId.ToString(), roles);
-		}
-
 		public void Logout(long userId)
 		{
-			var userLog = UserLog.Create(userId, LogType.Logout);
-			UserLog.AddSaveChanges(userLog);
+			UserLog.Save(userId, LogType.Logout);
+		}
+
+		private void CreateHash(AuthenticationModel authentication)
+		{
+			authentication.Login = Hash.Create(authentication.Login);
+			authentication.Password = Hash.Create(authentication.Password);
+		}
+
+		private void CreateJwt(AuthenticatedModel authenticated)
+		{
+			var roles = authenticated.Roles.Select(role => role.ToString()).ToArray();
+			authenticated.Jwt = JsonWebToken.Encode(authenticated.UserId.ToString(), roles);
 		}
 	}
 }

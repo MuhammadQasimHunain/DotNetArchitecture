@@ -6,10 +6,6 @@ namespace Solution.Domain.Domains
 	{
 		AuthenticatedModel Authenticate(AuthenticationModel authentication);
 
-		string AuthenticateCreateJwt(AuthenticationModel authentication);
-
-		string CreateJwt(AuthenticatedModel authenticated);
-
 		void Logout(long userId);
 	}
 }

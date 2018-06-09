@@ -14,25 +14,17 @@ namespace Solution.Domain.Domains
 
 		IDatabaseUnitOfWork Database { get; }
 
-		public void Add(UserLogModel userLog)
+		public void Save(long userId, LogType logType)
 		{
-			Database.UserLog.Add(userLog);
-		}
-
-		public void AddSaveChanges(UserLogModel userLog)
-		{
-			Add(userLog);
-			Database.SaveChanges();
-		}
-
-		public UserLogModel Create(long userId, LogType logType)
-		{
-			return new UserLogModel
+			var userLog = new UserLogModel
 			{
 				UserId = userId,
 				LogType = logType,
 				DateTime = DateTime.UtcNow
 			};
+
+			Database.UserLog.Add(userLog);
+			Database.SaveChanges();
 		}
 	}
 }

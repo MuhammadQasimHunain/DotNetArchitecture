@@ -17,16 +17,6 @@ namespace Solution.Application.Applications
 			return Authentication.Authenticate(authentication);
 		}
 
-		public string AuthenticateCreateJwt(AuthenticationModel authentication)
-		{
-			return Authentication.AuthenticateCreateJwt(authentication);
-		}
-
-		public string CreateJwt(AuthenticatedModel authenticated)
-		{
-			return Authentication.CreateJwt(authenticated);
-		}
-
 		public void Logout(long userId)
 		{
 			Authentication.Logout(userId);

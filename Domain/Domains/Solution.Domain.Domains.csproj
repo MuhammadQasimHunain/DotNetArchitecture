@@ -3,6 +3,7 @@
 		<TargetFramework>netcoreapp2.1</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\..\CrossCutting\Mapping\Solution.CrossCutting.Mapping.csproj" />
 		<ProjectReference Include="..\..\CrossCutting\Security\Solution.CrossCutting.Security.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\Database\Solution.Infrastructure.Database.csproj" />
 		<ProjectReference Include="..\..\Model\Enums\Solution.Model.Enums.csproj" />
