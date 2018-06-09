@@ -34,8 +34,6 @@
 
 [![Codacy](https://api.codacy.com/project/badge/Grade/6eef5f26173c4b80824a2eeb0b4f9ab9)](https://www.codacy.com/app/rafaelfgx/DotNetArchitecture?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rafaelfgx/DotNetArchitecture&amp;utm_campaign=Badge_Grade)
 
-[![CodeFactor](https://www.codefactor.io/repository/github/rafaelfgx/dotnetarchitecture/badge)](https://www.codefactor.io/repository/github/rafaelfgx/dotnetarchitecture)
-
 ## Layers
 
 ![Screenshot](Screenshots/0.png)
