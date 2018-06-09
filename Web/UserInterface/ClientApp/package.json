@@ -36,7 +36,8 @@
 		"analysis": "ng lint && ng build",
 		"document": "./node_modules/.bin/compodoc -p tsconfig.json",
 		"restore": "npm install --suppess-warnings",
-		"development": "ng serve",
+		"run": "ng serve",
+		"development": "ng build --configuration=development",
 		"staging": "ng build --configuration=staging",
 		"production": "ng build --configuration=production"
 	}

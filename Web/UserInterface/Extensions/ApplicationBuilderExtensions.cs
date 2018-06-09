@@ -49,7 +49,7 @@ namespace Solution.Web.UserInterface.Extensions
 					return;
 				}
 
-				spa.UseAngularCliServer("development");
+				spa.UseAngularCliServer("run");
 			});
 		}
 	}

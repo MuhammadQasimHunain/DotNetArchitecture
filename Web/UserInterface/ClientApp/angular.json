@@ -31,6 +31,17 @@
 						"tsConfig": "tsconfig.json"
 					},
 					"configurations": {
+						"development": {
+							"baseHref": "/aspnetcoreangular/",
+							"buildOptimizer": true,
+							"extractCss": true,
+							"extractLicenses": true,
+							"namedChunks": false,
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"vendorChunk": false
+						},
 						"production": {
 							"fileReplacements": [
 								{
