@@ -18,7 +18,7 @@ namespace Solution.CrossCutting.DependencyInjection
 
 		public static void AddDbContext<T>(string connectionString) where T : DbContext
 		{
-			Services.AddDbContext<T>(options => options.UseSqlServer(connectionString));
+			Services.AddDbContextPool<T>(options => options.UseSqlServer(connectionString));
 			var context = GetService<T>();
 			context.Database.EnsureCreated();
 			context.Database.Migrate();
@@ -26,7 +26,7 @@ namespace Solution.CrossCutting.DependencyInjection
 
 		public static void AddDbContextInMemoryDatabase<T>() where T : DbContext
 		{
-			Services.AddDbContext<T>(options => options.UseInMemoryDatabase(typeof(T).Name));
+			Services.AddDbContextPool<T>(options => options.UseInMemoryDatabase(typeof(T).Name));
 			GetService<T>().Database.EnsureCreated();
 		}
 
