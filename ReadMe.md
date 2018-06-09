@@ -126,9 +126,9 @@
 
 **CodeMaid**: <https://marketplace.visualstudio.com/items?itemName=SteveCadwallader.CodeMaid>
 
-**SonarLint**: <https://marketplace.visualstudio.com/items?itemName=SonarSource.SonarLintforVisualStudio2017>
-
 **Roslynator**: <https://marketplace.visualstudio.com/items?itemName=josefpihrt.Roslynator2017>
+
+**SonarLint**: <https://marketplace.visualstudio.com/items?itemName=SonarSource.SonarLintforVisualStudio2017>
 
 **TSLint**: <https://marketplace.visualstudio.com/items?itemName=vladeck.TSLint>
 
@@ -146,16 +146,16 @@
 
 1. Install **.NET Core 2.1 Runtime**: <https://www.microsoft.com/net/download/windows>.
 
-2. Change the **Connection String** in the **Solution.Web.UserInterface\AppSettings.json**.
+2. In the **Solution.Web.UserInterface\AppSettings.json** file change the **Connection String**.
 
-3. Change the **baseHref** value to **IIS_APPLICATION_NAME** in the **Solution.Web.UserInterface\ClientApp\angular.json**.
+3. In the **Solution.Web.UserInterface\ClientApp\angular.json** file change the **baseHref** to **IIS_APPLICATION_NAME**.
 
-4. Publish the **Solution.Web.UserInterface** project in the **Visual Studio** or by **dotnet publish**.
+4. Publish **Solution.Web.UserInterface** project in **Visual Studio** or **dotnet publish**.
 
 5. Copy the published files to **IIS folder** (inetpub\wwwroot\\**IIS_APPLICATION_NAME**).
 
 6. In the **IIS** create an **Application Pool** with **NET CLR Version** = **No Managed Code**.
 
-7. In the **IIS** execute **Convert to Application** using the previously created **Application Pool**.
+7. In the **IIS** execute **Convert to Application** using the created **Application Pool**.
 
 8. **Run and fun!**
