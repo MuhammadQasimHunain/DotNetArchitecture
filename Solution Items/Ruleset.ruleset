@@ -1208,7 +1208,7 @@
     <Rule Id="RCS1206" Action="Error" />
     <Rule Id="RCS1207" Action="Error" />
     <Rule Id="RCS1207FadeOut" Action="Error" />
-    <Rule Id="RCS1208" Action="Error" />
+    <Rule Id="RCS1208" Action="None" />
     <Rule Id="RCS1209" Action="Error" />
     <Rule Id="RCS1210" Action="Error" />
     <Rule Id="RCS1211" Action="Error" />

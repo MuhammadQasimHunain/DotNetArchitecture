@@ -30,12 +30,10 @@ namespace Solution.Web.UserInterface.Extensions
 
 		public static void UseHstsCustom(this IApplicationBuilder application, IHostingEnvironment environment)
 		{
-			if (environment.IsDevelopment())
+			if (!environment.IsDevelopment())
 			{
-				return;
+				application.UseHsts();
 			}
-
-			application.UseHsts();
 		}
 
 		public static void UseSpaCustom(this IApplicationBuilder application, IHostingEnvironment environment)
@@ -44,12 +42,10 @@ namespace Solution.Web.UserInterface.Extensions
 			{
 				spa.Options.SourcePath = "ClientApp";
 
-				if (!environment.IsDevelopment())
+				if (environment.IsDevelopment())
 				{
-					return;
+					spa.UseAngularCliServer("run");
 				}
-
-				spa.UseAngularCliServer("run");
 			});
 		}
 	}

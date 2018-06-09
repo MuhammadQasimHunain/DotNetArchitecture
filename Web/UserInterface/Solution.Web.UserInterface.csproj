@@ -26,15 +26,11 @@
 		<ProjectReference Include="..\..\Model\Enums\Solution.Model.Enums.csproj" />
 		<ProjectReference Include="..\..\Model\Models\Solution.Model.Models.csproj" />
 	</ItemGroup>
-	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
-		<Exec Command="node --version" ContinueOnError="true">
-			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
-		</Exec>
-		<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project." />
+	<Target Name="EnsureNode" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
 		<Message Importance="high" Text="Restoring dependencies using 'npm'..." />
 		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run restore" />
 	</Target>
-	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+	<Target Name="Publish" AfterTargets="ComputeFilesToPublish">
 		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run restore" />
 		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run development" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == '' " />
 		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run staging" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == 'Staging' " />
