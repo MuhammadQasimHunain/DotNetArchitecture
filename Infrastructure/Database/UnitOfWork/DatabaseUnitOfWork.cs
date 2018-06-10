@@ -22,13 +22,11 @@ namespace Solution.Infrastructure.Database
 
 		public void DiscardChanges()
 		{
-			if (Context == null)
+			if (Context != null)
 			{
-				return;
+				Context.Dispose();
+				Context = null;
 			}
-
-			Context.Dispose();
-			Context = null;
 		}
 
 		public void SaveChanges()

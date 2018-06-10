@@ -1459,7 +1459,7 @@
     <Rule Id="S3776" Action="Error" />
     <Rule Id="S3869" Action="Error" />
     <Rule Id="S3871" Action="Error" />
-    <Rule Id="S3872" Action="Error" />
+    <Rule Id="S3872" Action="None" />
     <Rule Id="S3874" Action="Error" />
     <Rule Id="S3875" Action="Error" />
     <Rule Id="S3876" Action="Error" />

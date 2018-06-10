@@ -227,14 +227,20 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 			Context.Entry(entityContext).CurrentValues.SetValues(entity);
 		}
 
+		IQueryable<TEntity> Include(IQueryable<TEntity> queryable, Expression<Func<TEntity, object>>[] include)
+		{
+			include?.ToList().ForEach(property => queryable = queryable.Include(property));
+			return queryable;
+		}
+
 		IQueryable<TEntity> QueryableInclude(Expression<Func<TEntity, object>>[] include)
 		{
-			return Queryable.Include(include);
+			return Include(Queryable, include);
 		}
 
 		IQueryable<TEntity> QueryableWhereInclude(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, object>>[] include)
 		{
-			return Queryable.Where(where).Include(include);
+			return Include(Queryable.Where(where), include);
 		}
 
 		IQueryable<TEntityResult> QueryableWhereSelect<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
