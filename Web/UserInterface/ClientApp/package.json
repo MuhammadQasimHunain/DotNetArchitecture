@@ -33,12 +33,11 @@
 		"typescript": "2.7.2"
 	},
 	"scripts": {
-		"analysis": "ng lint && ng build",
 		"document": "./node_modules/.bin/compodoc -p tsconfig.json",
 		"restore": "npm install --suppess-warnings",
-		"serve": "ng serve",
-		"development": "ng build --configuration=development",
-		"staging": "ng build --configuration=staging",
-		"production": "ng build --configuration=production"
+		"serve": "ng lint && ng serve",
+		"development": "ng lint && ng build --configuration=development",
+		"staging": "ng lint && ng build --configuration=staging",
+		"production": "ng lint && ng build --configuration=production"
 	}
 }
