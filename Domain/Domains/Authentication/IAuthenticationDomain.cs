@@ -4,7 +4,7 @@ namespace Solution.Domain.Domains
 {
 	public interface IAuthenticationDomain : IBaseDomain
 	{
-		AuthenticatedModel Authenticate(AuthenticationModel authentication);
+		string Authenticate(AuthenticationModel authentication);
 
 		void Logout(long userId);
 	}

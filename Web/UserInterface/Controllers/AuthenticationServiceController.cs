@@ -22,7 +22,7 @@ namespace Solution.Web.UserInterface.Controllers
 		[HttpPost("[action]")]
 		public IActionResult Authenticate([FromBody]AuthenticationModel authentication)
 		{
-			return Json(Authentication.Authenticate(authentication).Jwt);
+			return Json(Authentication.Authenticate(authentication));
 		}
 
 		[HttpPost("[action]")]

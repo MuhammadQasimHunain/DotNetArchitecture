@@ -4,7 +4,7 @@ namespace Solution.Application.Applications
 {
 	public interface IAuthenticationApplication : IBaseApplication
 	{
-		AuthenticatedModel Authenticate(AuthenticationModel authentication);
+		string Authenticate(AuthenticationModel authentication);
 
 		void Logout(long userId);
 	}

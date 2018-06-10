@@ -26,21 +26,19 @@ namespace Solution.Domain.Domains
 		IJsonWebToken JsonWebToken { get; }
 		IUserLogDomain UserLog { get; }
 
-		public AuthenticatedModel Authenticate(AuthenticationModel authentication)
+		public string Authenticate(AuthenticationModel authentication)
 		{
 			new AuthenticationValidation().ValidateThrowException(authentication);
 
-			CreateHash(authentication);
+			SetHash(authentication);
 
 			var authenticated = Database.User.Authenticate(authentication);
 
 			new AuthenticatedValidation().ValidateThrowException(authenticated);
 
-			CreateJwt(authenticated);
-
 			UserLog.Save(authenticated.UserId, LogType.Login);
 
-			return authenticated;
+			return GetJwt(authenticated);
 		}
 
 		public void Logout(long userId)
@@ -48,16 +46,16 @@ namespace Solution.Domain.Domains
 			UserLog.Save(userId, LogType.Logout);
 		}
 
-		private void CreateHash(AuthenticationModel authentication)
+		private string GetJwt(AuthenticatedModel authenticated)
+		{
+			var roles = authenticated.Roles.Select(role => role.ToString()).ToArray();
+			return JsonWebToken.Encode(authenticated.UserId.ToString(), roles);
+		}
+
+		private void SetHash(AuthenticationModel authentication)
 		{
 			authentication.Login = Hash.Create(authentication.Login);
 			authentication.Password = Hash.Create(authentication.Password);
-		}
-
-		private void CreateJwt(AuthenticatedModel authenticated)
-		{
-			var roles = authenticated.Roles.Select(role => role.ToString()).ToArray();
-			authenticated.Jwt = JsonWebToken.Encode(authenticated.UserId.ToString(), roles);
 		}
 	}
 }
