@@ -1,5 +1,9 @@
 # DotNetArchitecture
 
+The project aims to apply and share new knowledge and technologies and be used as an architecture for new projects. It is built to be very flexible and easy to evolve and improve.
+
+## Tools, Practices and Technologies
+
 * Cross-Platform (Windows, Linux, macOS)
 * Visual Studio 2017
 * Visual Studio Code
