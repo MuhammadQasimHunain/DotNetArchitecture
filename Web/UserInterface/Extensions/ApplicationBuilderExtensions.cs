@@ -44,7 +44,7 @@ namespace Solution.Web.UserInterface.Extensions
 
 				if (environment.IsDevelopment())
 				{
-					spa.UseAngularCliServer("run");
+					spa.UseAngularCliServer("serve");
 				}
 			});
 		}
