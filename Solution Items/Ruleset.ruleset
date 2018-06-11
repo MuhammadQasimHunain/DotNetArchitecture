@@ -998,11 +998,11 @@
     <Rule Id="RECS0137" Action="Error" />
     <Rule Id="RECS0138" Action="Error" />
     <Rule Id="RECS0143" Action="Error" />
-    <Rule Id="RECS0145" Action="Error" />
+    <Rule Id="RECS0145" Action="None" />
     <Rule Id="RECS0146" Action="Error" />
     <Rule Id="RECS0147" Action="Error" />
     <Rule Id="RECS0149" Action="Error" />
-    <Rule Id="RECS0154" Action="Error" />
+    <Rule Id="RECS0154" Action="None" />
     <Rule Id="RECS0155" Action="Error" />
     <Rule Id="RECS0157" Action="Error" />
     <Rule Id="RECS0158" Action="Error" />
