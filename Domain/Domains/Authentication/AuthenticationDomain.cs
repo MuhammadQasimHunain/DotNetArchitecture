@@ -28,13 +28,13 @@ namespace Solution.Domain.Domains
 
 		public string Authenticate(AuthenticationModel authentication)
 		{
-			new AuthenticationValidation().ValidateThrowException(authentication);
+			new AuthenticationValidator().ValidateThrowException(authentication);
 
 			SetHash(authentication);
 
 			var authenticated = Database.User.Authenticate(authentication);
 
-			new AuthenticatedValidation().ValidateThrowException(authenticated);
+			new AuthenticatedValidator().ValidateThrowException(authenticated);
 
 			UserLog.Save(authenticated.UserId, LogType.Login);
 
