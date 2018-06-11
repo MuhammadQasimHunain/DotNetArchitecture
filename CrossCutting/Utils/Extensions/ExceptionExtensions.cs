@@ -10,7 +10,7 @@ namespace Solution.CrossCutting.Utils
 		{
 			var sb = new StringBuilder();
 
-			sb.Append($"ERROR: { exception.Message }.");
+			sb.Append($"{ exception.Message }. ");
 
 			var stackFrame = new StackTrace(exception, true).GetFrame(0);
 
@@ -19,8 +19,8 @@ namespace Solution.CrossCutting.Utils
 				return sb.ToString();
 			}
 
-			sb.Append($"FILE: { stackFrame.GetMethod().DeclaringType }.");
-			sb.Append($"LINE: { stackFrame.GetFileLineNumber() }.");
+			sb.Append($"FILE: { stackFrame.GetMethod().DeclaringType }. ");
+			sb.Append($"LINE: { stackFrame.GetFileLineNumber() }. ");
 
 			return sb.ToString();
 		}

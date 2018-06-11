@@ -2,4 +2,10 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.1</TargetFramework>
 	</PropertyGroup>
+	<ItemGroup>
+	  <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Utils\Solution.CrossCutting.Utils.csproj" />
+	</ItemGroup>
 </Project>

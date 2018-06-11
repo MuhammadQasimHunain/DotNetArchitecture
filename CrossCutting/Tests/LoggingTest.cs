@@ -11,21 +11,21 @@ namespace Solution.CrossCutting.Tests
 		public LoggingTest()
 		{
 			DependencyInjector.RegisterServices();
-			Logging = DependencyInjector.GetService<ILogger>();
+			Logger = DependencyInjector.GetService<ILogger>();
 		}
 
-		ILogger Logging { get; }
+		ILogger Logger { get; }
 
 		[TestMethod]
-		public void LoggingError()
+		public void LoggerError()
 		{
-			Logging.Error(new DomainException(nameof(LoggingTest)));
+			Logger.Error(nameof(Logger.Error));
 		}
 
 		[TestMethod]
-		public void LoggingInformation()
+		public void LoggerInformation()
 		{
-			Logging.Information(nameof(LoggingTest));
+			Logger.Information(nameof(Logger.Information));
 		}
 	}
 }
