@@ -28,6 +28,7 @@ The project aims to apply and share new knowledge and technologies and be used a
 * Memory Caching
 * Response Caching
 * Object Mapping
+* Logging
 * Code Analysis (Ruleset for C# and TSLint for Typescript)
 
 ## Build
