@@ -4,6 +4,8 @@ using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Solution.CrossCutting.DependencyInjection;
+using Solution.CrossCutting.Logging;
 using Solution.CrossCutting.Utils;
 
 namespace Solution.Web.UserInterface.Middlewares
@@ -11,11 +13,13 @@ namespace Solution.Web.UserInterface.Middlewares
 	public class ExceptionMiddleware
 	{
 		readonly IHostingEnvironment _environment;
+		readonly ILogger _logger;
 		readonly RequestDelegate _request;
 
 		public ExceptionMiddleware(IHostingEnvironment environment, RequestDelegate request)
 		{
 			_environment = environment;
+			_logger = DependencyInjector.GetService<ILogger>();
 			_request = request;
 		}
 
@@ -39,10 +43,11 @@ namespace Solution.Web.UserInterface.Middlewares
 					throw;
 				}
 
+				_logger.Error(exception);
 				context.Response.Clear();
 				context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 				context.Response.ContentType = MediaTypeNames.Text.Plain;
-				await context.Response.WriteAsync(exception.GetDetail()).ConfigureAwait(false);
+				await context.Response.WriteAsync(string.Empty).ConfigureAwait(false);
 			}
 		}
 	}
