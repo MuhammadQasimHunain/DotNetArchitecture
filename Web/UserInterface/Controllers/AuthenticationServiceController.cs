@@ -16,7 +16,7 @@ namespace Solution.Web.UserInterface.Controllers
 			Authentication = authentication;
 		}
 
-		IAuthenticationApplication Authentication { get; }
+		private IAuthenticationApplication Authentication { get; }
 
 		[AllowAnonymous]
 		[HttpPost("[action]")]

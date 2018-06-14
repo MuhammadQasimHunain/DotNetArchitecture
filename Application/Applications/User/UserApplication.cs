@@ -11,7 +11,7 @@ namespace Solution.Application.Applications
 			User = user;
 		}
 
-		IUserDomain User { get; }
+		private IUserDomain User { get; }
 
 		public PagedList<UserModel> List(PagedListParameters parameters)
 		{
