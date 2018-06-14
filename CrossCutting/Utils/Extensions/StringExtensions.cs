@@ -31,7 +31,7 @@ namespace Solution.CrossCutting.Utils
 
 			value = dictionary.Keys.Aggregate(value, (x, y) => dictionary[y].Aggregate(x, (z, c) => z.Replace(c, y)));
 
-			return Regex.Replace(value, "[^0-9a-zA-Z._ ]+?", string.Empty);
+			return new Regex("[^0-9a-zA-Z._ ]+?").Replace(value, string.Empty);
 		}
 	}
 }

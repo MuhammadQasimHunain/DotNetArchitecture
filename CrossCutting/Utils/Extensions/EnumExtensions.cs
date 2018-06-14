@@ -17,7 +17,7 @@ namespace Solution.CrossCutting.Utils
 			return (attribute == null) ? value.ToString() : attribute.Description;
 		}
 
-		static T GetAttribute<T>(this Enum value) where T : Attribute
+		private static T GetAttribute<T>(this Enum value) where T : Attribute
 		{
 			if (value == null)
 			{

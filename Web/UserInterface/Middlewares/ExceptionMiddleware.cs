@@ -12,9 +12,9 @@ namespace Solution.Web.UserInterface.Middlewares
 {
 	public class ExceptionMiddleware
 	{
-		readonly IHostingEnvironment _environment;
-		readonly ILogger _logger;
-		readonly RequestDelegate _request;
+		private readonly IHostingEnvironment _environment;
+		private readonly ILogger _logger;
+		private readonly RequestDelegate _request;
 
 		public ExceptionMiddleware(IHostingEnvironment environment, RequestDelegate request)
 		{

@@ -6,7 +6,7 @@ namespace Solution.CrossCutting.Security
 {
 	public static class JsonWebTokenSettings
 	{
-		static SecurityKey _securityKey;
+		private static SecurityKey _securityKey;
 
 		public static string Audience => nameof(Audience);
 

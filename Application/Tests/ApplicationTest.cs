@@ -15,7 +15,7 @@ namespace Solution.Application.Tests
 			UserApplication = DependencyInjector.GetService<IUserApplication>();
 		}
 
-		IUserApplication UserApplication { get; }
+		private IUserApplication UserApplication { get; }
 
 		[TestMethod]
 		public void UserApplicationSelect()

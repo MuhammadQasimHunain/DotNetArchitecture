@@ -13,7 +13,7 @@ namespace Solution.CrossCutting.Tests
 			JsonWebToken = DependencyInjector.GetService<IJsonWebToken>();
 		}
 
-		IJsonWebToken JsonWebToken { get; }
+		private IJsonWebToken JsonWebToken { get; }
 
 		[TestMethod]
 		public void JsonWebTokenEncodeDecode()

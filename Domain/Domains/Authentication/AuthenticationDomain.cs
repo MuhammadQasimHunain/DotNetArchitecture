@@ -21,10 +21,10 @@ namespace Solution.Domain.Domains
 			UserLog = userLog;
 		}
 
-		IDatabaseUnitOfWork Database { get; }
-		IHash Hash { get; }
-		IJsonWebToken JsonWebToken { get; }
-		IUserLogDomain UserLog { get; }
+		private IDatabaseUnitOfWork Database { get; }
+		private IHash Hash { get; }
+		private IJsonWebToken JsonWebToken { get; }
+		private IUserLogDomain UserLog { get; }
 
 		public string Authenticate(AuthenticationModel authentication)
 		{

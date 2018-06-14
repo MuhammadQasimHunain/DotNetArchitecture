@@ -14,7 +14,7 @@ namespace Solution.CrossCutting.Tests
 			Criptography.SetKey("8800A390DCF24C9087F8AAE870FCFE02");
 		}
 
-		ICriptography Criptography { get; }
+		private ICriptography Criptography { get; }
 
 		[TestMethod]
 		public void CriptographyEncryptDecrypt()

@@ -13,7 +13,7 @@ namespace Solution.Web.UserInterface
 			Configuration = configuration;
 		}
 
-		IConfiguration Configuration { get; }
+		private IConfiguration Configuration { get; }
 
 		public void Configure(IApplicationBuilder application, IHostingEnvironment environment)
 		{

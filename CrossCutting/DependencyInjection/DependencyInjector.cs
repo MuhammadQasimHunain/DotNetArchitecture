@@ -12,9 +12,9 @@ namespace Solution.CrossCutting.DependencyInjection
 {
 	public static class DependencyInjector
 	{
-		static IServiceProvider ServiceProvider { get; set; }
+		private static IServiceProvider ServiceProvider { get; set; }
 
-		static IServiceCollection Services { get; set; }
+		private static IServiceCollection Services { get; set; }
 
 		public static void AddDbContext<T>(string connectionString) where T : DbContext
 		{

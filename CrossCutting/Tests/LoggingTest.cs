@@ -14,7 +14,7 @@ namespace Solution.CrossCutting.Tests
 			Logger = DependencyInjector.GetService<ILogger>();
 		}
 
-		ILogger Logger { get; }
+		private ILogger Logger { get; }
 
 		[TestMethod]
 		public void LoggerError()

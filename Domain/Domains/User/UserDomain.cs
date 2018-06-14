@@ -11,7 +11,7 @@ namespace Solution.Domain.Domains
 			Database = database;
 		}
 
-		IDatabaseUnitOfWork Database { get; }
+		private IDatabaseUnitOfWork Database { get; }
 
 		public PagedList<UserModel> List(PagedListParameters parameters)
 		{

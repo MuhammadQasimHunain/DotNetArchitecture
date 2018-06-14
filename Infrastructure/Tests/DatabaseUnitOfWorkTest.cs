@@ -20,7 +20,7 @@ namespace Solution.Infrastructure.Tests
 			SeedDatabase();
 		}
 
-		IDatabaseUnitOfWork Database { get; }
+		private IDatabaseUnitOfWork Database { get; }
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryAny()
@@ -322,7 +322,7 @@ namespace Solution.Infrastructure.Tests
 			Assert.AreEqual(user.Name, guid.ToString());
 		}
 
-		void SeedDatabase()
+		private void SeedDatabase()
 		{
 			for (var i = 1; i < 100; i++)
 			{

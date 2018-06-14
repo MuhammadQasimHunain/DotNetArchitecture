@@ -19,9 +19,9 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 
 		public IQueryable<TEntity> Queryable => Set.AsNoTracking();
 
-		DbSet<TEntity> Set => Context.Set<TEntity>();
+		private DbSet<TEntity> Set => Context.Set<TEntity>();
 
-		DbContext Context { get; }
+		private DbContext Context { get; }
 
 		public void Add(TEntity entity)
 		{
@@ -30,7 +30,7 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 
 		public async Task AddAsync(TEntity entity)
 		{
-			await Set.AddAsync(entity);
+			await Set.AddAsync(entity).ConfigureAwait(false);
 		}
 
 		public void AddRange(params TEntity[] entities)
@@ -40,7 +40,7 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 
 		public async Task AddRangeAsync(params TEntity[] entities)
 		{
-			await Set.AddRangeAsync(entities);
+			await Set.AddRangeAsync(entities).ConfigureAwait(false);
 		}
 
 		public bool Any()
@@ -177,12 +177,12 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 
 		public async Task<IEnumerable<TEntity>> ListAsync(params Expression<Func<TEntity, object>>[] include)
 		{
-			return await QueryableInclude(include).ToListAsync();
+			return await QueryableInclude(include).ToListAsync().ConfigureAwait(false);
 		}
 
 		public async Task<IEnumerable<TEntity>> ListAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
 		{
-			return await QueryableWhereInclude(where, include).ToListAsync();
+			return await QueryableWhereInclude(where, include).ToListAsync().ConfigureAwait(false);
 		}
 
 		public TEntity Select(long id)
@@ -227,23 +227,23 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 			Context.Entry(entityContext).CurrentValues.SetValues(entity);
 		}
 
-		IQueryable<TEntity> Include(IQueryable<TEntity> queryable, Expression<Func<TEntity, object>>[] include)
+		private IQueryable<TEntity> Include(IQueryable<TEntity> queryable, Expression<Func<TEntity, object>>[] properties)
 		{
-			include?.ToList().ForEach(property => queryable = queryable.Include(property));
+			properties?.ToList().ForEach(property => queryable = queryable.Include(property));
 			return queryable;
 		}
 
-		IQueryable<TEntity> QueryableInclude(Expression<Func<TEntity, object>>[] include)
+		private IQueryable<TEntity> QueryableInclude(Expression<Func<TEntity, object>>[] include)
 		{
 			return Include(Queryable, include);
 		}
 
-		IQueryable<TEntity> QueryableWhereInclude(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, object>>[] include)
+		private IQueryable<TEntity> QueryableWhereInclude(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, object>>[] include)
 		{
 			return Include(Queryable.Where(where), include);
 		}
 
-		IQueryable<TEntityResult> QueryableWhereSelect<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
+		private IQueryable<TEntityResult> QueryableWhereSelect<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
 		{
 			return Queryable.Where(where).Select(select);
 		}

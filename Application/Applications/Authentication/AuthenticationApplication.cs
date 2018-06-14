@@ -10,7 +10,7 @@ namespace Solution.Application.Applications
 			Authentication = authentication;
 		}
 
-		IAuthenticationDomain Authentication { get; }
+		private IAuthenticationDomain Authentication { get; }
 
 		public string Authenticate(AuthenticationModel authentication)
 		{

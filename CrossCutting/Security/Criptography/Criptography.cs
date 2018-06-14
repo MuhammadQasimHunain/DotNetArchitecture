@@ -7,7 +7,7 @@ namespace Solution.CrossCutting.Security
 {
 	public class Criptography : ICriptography
 	{
-		string Key { get; set; }
+		private string Key { get; set; }
 
 		public string Decrypt(string value)
 		{
@@ -26,7 +26,7 @@ namespace Solution.CrossCutting.Security
 			Key = key;
 		}
 
-		static byte[] Transform(byte[] bytes, ICryptoTransform cryptoTransform)
+		private static byte[] Transform(byte[] bytes, ICryptoTransform cryptoTransform)
 		{
 			var ms = new MemoryStream();
 			var cs = new CryptoStream(ms, cryptoTransform, CryptoStreamMode.Write);
@@ -35,7 +35,7 @@ namespace Solution.CrossCutting.Security
 			return ms.ToArray();
 		}
 
-		SymmetricAlgorithm GetAlgorithm()
+		private SymmetricAlgorithm GetAlgorithm()
 		{
 			var key = new Rfc2898DeriveBytes(Key, Encoding.ASCII.GetBytes(Key));
 			var algorithm = new RijndaelManaged();

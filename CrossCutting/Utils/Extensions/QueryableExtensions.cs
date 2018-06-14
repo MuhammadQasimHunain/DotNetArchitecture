@@ -28,7 +28,7 @@ namespace Solution.CrossCutting.Utils
 			return queryable.Skip((index - 1) * size).Take(size);
 		}
 
-		static dynamic CreateExpression(Type type, string property)
+		private static dynamic CreateExpression(Type type, string property)
 		{
 			var parameter = Expression.Parameter(type, "x");
 

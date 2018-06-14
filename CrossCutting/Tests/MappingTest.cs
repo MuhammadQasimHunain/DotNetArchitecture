@@ -16,7 +16,7 @@ namespace Solution.CrossCutting.Tests
 			Mapping = DependencyInjector.GetService<IMapper>();
 		}
 
-		IMapper Mapping { get; }
+		private IMapper Mapping { get; }
 
 		[TestMethod]
 		public void MappingClone()

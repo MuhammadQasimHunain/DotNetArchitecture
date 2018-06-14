@@ -18,7 +18,7 @@ namespace Solution.Infrastructure.Database
 		public IUserLogRepository UserLog { get; }
 		public IUserRoleRepository UserRole { get; }
 
-		DatabaseContext Context { get; set; }
+		private DatabaseContext Context { get; set; }
 
 		public void DiscardChanges()
 		{

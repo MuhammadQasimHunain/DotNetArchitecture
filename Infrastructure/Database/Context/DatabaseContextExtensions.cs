@@ -12,7 +12,7 @@ namespace Solution.Infrastructure.Database
 			context.SaveChanges();
 		}
 
-		static void SeedUsers(DatabaseContext context)
+		private static void SeedUsers(DatabaseContext context)
 		{
 			if (context.Users.Find(1L) != null)
 			{

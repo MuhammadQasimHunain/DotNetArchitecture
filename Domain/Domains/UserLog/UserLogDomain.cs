@@ -12,7 +12,7 @@ namespace Solution.Domain.Domains
 			Database = database;
 		}
 
-		IDatabaseUnitOfWork Database { get; }
+		private IDatabaseUnitOfWork Database { get; }
 
 		public void Save(long userId, LogType logType)
 		{

@@ -34,7 +34,7 @@ namespace Solution.CrossCutting.Security
 			return new JwtSecurityTokenHandler().WriteToken(GetJwtSecurityToken(claims));
 		}
 
-		static JwtSecurityToken GetJwtSecurityToken(IEnumerable<Claim> claims)
+		private static JwtSecurityToken GetJwtSecurityToken(IEnumerable<Claim> claims)
 		{
 			return new JwtSecurityToken
 			(

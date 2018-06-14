@@ -14,7 +14,7 @@ namespace Solution.CrossCutting.Tests
 			Hash = DependencyInjector.GetService<IHash>();
 		}
 
-		IHash Hash { get; }
+		private IHash Hash { get; }
 
 		[TestMethod]
 		public void HashCreate()

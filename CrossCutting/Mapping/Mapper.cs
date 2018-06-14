@@ -25,7 +25,7 @@ namespace Solution.CrossCutting.Mapping
 			return AgileObjects.AgileMapper.Mapper.Map(source).OnTo(destination);
 		}
 
-		static void Configure()
+		private static void Configure()
 		{
 			AgileObjects.AgileMapper.Mapper.WhenMapping.From<UserModel>().To<AuthenticatedModel>()
 				.Map(s => s.Source.UsersRoles.Select(x => x.Role)).To(d => d.Roles)

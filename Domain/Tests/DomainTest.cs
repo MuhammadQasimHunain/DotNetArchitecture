@@ -15,7 +15,7 @@ namespace Solution.Domain.Tests
 			UserDomain = DependencyInjector.GetService<IUserDomain>();
 		}
 
-		IUserDomain UserDomain { get; }
+		private IUserDomain UserDomain { get; }
 
 		[TestMethod]
 		public void UserDomainSelect()
