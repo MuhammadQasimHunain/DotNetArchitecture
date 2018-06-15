@@ -219,12 +219,10 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 		{
 			var entityContext = Set.Find(key);
 
-			if (entityContext == null)
+			if (entityContext != null)
 			{
-				return;
+				Context.Entry(entityContext).CurrentValues.SetValues(entity);
 			}
-
-			Context.Entry(entityContext).CurrentValues.SetValues(entity);
 		}
 
 		private IQueryable<TEntity> Include(IQueryable<TEntity> queryable, Expression<Func<TEntity, object>>[] properties)
