@@ -139,7 +139,7 @@ The project aims to apply and share new knowledge and technologies and be used a
 
 ## Run in Visual Studio Code
 
-1. Install **.NET Core 2.1 SDK**: <https://www.microsoft.com/net/download/windows>.
+1. Install **.NET Core 2.1 SDK**: <https://aka.ms/dotnet-download>.
 
 2. Install **C#** extension in **Visual Studio Code**: <https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp>.
 
@@ -149,7 +149,7 @@ The project aims to apply and share new knowledge and technologies and be used a
 
 ## Deploy to IIS
 
-1. Install **.NET Core 2.1 Runtime**: <https://www.microsoft.com/net/download/windows>.
+1. Install **.NET Core 2.1 Runtime**: <https://aka.ms/dotnet-download>.
 
 2. In the **Solution.Web.UserInterface\AppSettings.json** file change the **Connection String**.
 
