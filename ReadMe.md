@@ -1,6 +1,6 @@
 # DotNetArchitecture
 
-The project aims to apply and share new knowledge and technologies and be used as an architecture for new projects. It is built to be very flexible and easy to evolve and improve.
+The objective of this solution is to apply and share new knowledge and technologies and be used as an architecture for new projects.
 
 ## Tools, Practices and Technologies
 
