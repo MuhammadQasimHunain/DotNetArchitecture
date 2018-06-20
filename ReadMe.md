@@ -1,6 +1,6 @@
 # DotNetArchitecture
 
-The objective of this solution is to apply and share new knowledge and technologies and be used as an architecture for new projects.
+The objective is to apply and share new knowledge and technologies and be used as architecture for new projects.
 
 ## Tools, Practices and Technologies
 
