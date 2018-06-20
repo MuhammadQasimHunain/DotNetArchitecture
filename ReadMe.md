@@ -22,14 +22,8 @@ The project aims to apply and share new knowledge and technologies and be used a
 * SOLID Principles
 * Dependency Injection
 * Unit Test
-* Unit of Work Pattern
-* Repository Pattern
 * JWT (Json Web Token)
-* Memory Caching
-* Response Caching
-* Object Mapping
-* Logging
-* Code Analysis (Ruleset for C# and TSLint for Typescript)
+* Code Analysis
 
 ## Build
 
