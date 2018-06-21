@@ -1,6 +1,6 @@
 # DotNetArchitecture
 
-Solution to apply and share new knowledge and technologies and be used as architecture for new projects with .NET Core and Angular.
+Solution to apply and share new knowledge and technologies and to serve as architecture for new projects with .NET Core and Angular.
 
 ## Tools, Practices and Technologies
 
