@@ -1,6 +1,6 @@
 # DotNetArchitecture
 
-The objective is to apply and share new knowledge and technologies and be used as architecture for new projects.
+Solution to apply and share new knowledge and technologies and be used as architecture for new projects with .NET Core and Angular.
 
 ## Tools, Practices and Technologies
 
