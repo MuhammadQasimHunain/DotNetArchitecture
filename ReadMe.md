@@ -8,9 +8,9 @@ The objective is to apply and share new knowledge and technologies and be used a
 * Visual Studio 2017
 * Visual Studio Code
 * SQL Server 2017
-* .NET Core 2.1
-* ASP.NET Core 2.1
-* Entity Framework Core 2.1
+* .NET Core 2.1.1
+* ASP.NET Core 2.1.1
+* Entity Framework Core 2.1.1
 * C# 7.2
 * SPA (Single Page Application)
 * Angular 6.0.5
@@ -133,7 +133,7 @@ The objective is to apply and share new knowledge and technologies and be used a
 
 ## Run in Visual Studio Code
 
-1. Install **.NET Core 2.1 SDK**: <https://aka.ms/dotnet-download>.
+1. Install **.NET Core SDK**: <https://aka.ms/dotnet-download>.
 
 2. Install **C#** extension in **Visual Studio Code**: <https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp>.
 
@@ -143,13 +143,13 @@ The objective is to apply and share new knowledge and technologies and be used a
 
 ## Deploy to IIS
 
-1. Install **.NET Core 2.1 Runtime**: <https://aka.ms/dotnet-download>.
+1. Install **.NET Core Runtime**: <https://aka.ms/dotnet-download>.
 
 2. In the **Solution.Web.UserInterface\AppSettings.json** file change the **Connection String**.
 
 3. In the **Solution.Web.UserInterface\ClientApp\angular.json** file change the **baseHref** to **IIS_APPLICATION_NAME**.
 
-4. Publish **Solution.Web.UserInterface** project in **Visual Studio** or **dotnet publish**.
+4. Publish **Solution.Web.UserInterface** project in **Visual Studio** or by **dotnet publish** command.
 
 5. Copy the published files to **IIS folder** (inetpub\wwwroot\\**IIS_APPLICATION_NAME**).
 
