@@ -8,12 +8,12 @@ Solution to apply and share new knowledge and technologies and to serve as archi
 * Visual Studio 2017
 * Visual Studio Code
 * SQL Server 2017
-* .NET Core 2.1
-* ASP.NET Core 2.1
-* Entity Framework Core 2.1
+* .NET Core 2.1.1
+* ASP.NET Core 2.1.1
+* Entity Framework Core 2.1.1
 * C# 7.3
 * SPA (Single Page Application)
-* Angular 6
+* Angular 6.0.6
 * Typescript 2.7.2
 * HTML5
 * CSS3
