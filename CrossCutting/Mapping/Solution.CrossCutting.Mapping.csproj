@@ -3,7 +3,7 @@
 		<TargetFramework>netcoreapp2.1</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="AgileObjects.AgileMapper" Version="0.23.3" />
+		<PackageReference Include="AgileObjects.AgileMapper" Version="0.23.4" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Model\Models\Solution.Model.Models.csproj" />
