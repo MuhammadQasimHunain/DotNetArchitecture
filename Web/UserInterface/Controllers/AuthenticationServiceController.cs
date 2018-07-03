@@ -8,8 +8,9 @@ using Solution.Web.UserInterface.Attributes;
 
 namespace Solution.Web.UserInterface.Controllers
 {
+	[ApiController]
 	[Route("[controller]")]
-	public class AuthenticationServiceController : BaseController
+	public class AuthenticationServiceController : ControllerBase
 	{
 		public AuthenticationServiceController(IAuthenticationApplication authentication)
 		{
@@ -20,9 +21,9 @@ namespace Solution.Web.UserInterface.Controllers
 
 		[AllowAnonymous]
 		[HttpPost("[action]")]
-		public IActionResult Authenticate([FromBody]AuthenticationModel authentication)
+		public string Authenticate(AuthenticationModel authentication)
 		{
-			return Json(Authentication.Authenticate(authentication));
+			return Authentication.Authenticate(authentication);
 		}
 
 		[HttpPost("[action]")]

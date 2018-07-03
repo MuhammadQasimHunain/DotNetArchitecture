@@ -14,7 +14,7 @@ export class AuthenticationService {
 		private readonly tokenService: TokenService) { }
 
 	authenticate(authentication: AuthenticationModel) {
-		this.http.post(`${this.service}/Authenticate`, authentication).subscribe((response: string) => {
+		this.http.post(`${this.service}/Authenticate`, authentication, { responseType: "text" }).subscribe((response: any) => {
 			this.tokenService.set(response);
 			this.router.navigate(["/home"]);
 		});

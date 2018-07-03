@@ -4,15 +4,16 @@ using Solution.Model.Models;
 
 namespace Solution.Web.UserInterface.Controllers
 {
+	[ApiController]
 	[Route("[controller]")]
-	public class ApplicationServiceController : BaseController
+	public class ApplicationServiceController : ControllerBase
 	{
 		[AllowAnonymous]
 		[HttpGet]
 		[ResponseCache(Duration = 1440)]
-		public IActionResult Get()
+		public ApplicationModel Get()
 		{
-			return Json(new ApplicationModel());
+			return new ApplicationModel();
 		}
 	}
 }
