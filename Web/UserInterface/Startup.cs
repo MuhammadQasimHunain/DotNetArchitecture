@@ -15,18 +15,18 @@ namespace Solution.Web.UserInterface
 
 		private IConfiguration Configuration { get; }
 
-		public void Configure(IApplicationBuilder application, IHostingEnvironment environment)
+		public void Configure(IApplicationBuilder application)
 		{
-			application.UseExceptionCustom(environment);
+			application.UseExceptionCustom();
 			application.UseAuthentication();
 			application.UseCorsCustom();
-			application.UseHstsCustom(environment);
+			application.UseHstsCustom();
 			application.UseHttpsRedirection();
 			application.UseStaticFiles();
 			application.UseSpaStaticFiles();
 			application.UseResponseCaching();
 			application.UseMvcWithDefaultRoute();
-			application.UseSpaCustom(environment);
+			application.UseSpaCustom();
 		}
 
 		public void ConfigureServices(IServiceCollection services)

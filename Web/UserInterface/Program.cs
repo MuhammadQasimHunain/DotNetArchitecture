@@ -5,12 +5,9 @@ namespace Solution.Web.UserInterface
 {
 	public static class Program
 	{
-		public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-			WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
-
-		public static void Main(string[] args)
+		public static void Main()
 		{
-			CreateWebHostBuilder(args).Build().Run();
+			WebHost.CreateDefaultBuilder().UseStartup<Startup>().Build().Run();
 		}
 	}
 }
