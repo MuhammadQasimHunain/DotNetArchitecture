@@ -23,7 +23,7 @@ Solution to apply and share new knowledge and technologies and to serve as archi
 * Dependency Injection
 * Unit Test
 * JWT (Json Web Token)
-* Code Analysis
+* Code Analysis (Ruleset for C# and TSLint for Typescript)
 
 ## Build
 
