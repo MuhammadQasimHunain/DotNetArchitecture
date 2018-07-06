@@ -19,6 +19,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Application\Applications\Solution.Application.Applications.csproj" />
+		<ProjectReference Include="..\..\CrossCutting\AspNetCore\Solution.CrossCutting.AspNetCore.csproj" />
 		<ProjectReference Include="..\..\CrossCutting\DependencyInjection\Solution.CrossCutting.DependencyInjection.csproj" />
 		<ProjectReference Include="..\..\CrossCutting\Security\Solution.CrossCutting.Security.csproj" />
 		<ProjectReference Include="..\..\CrossCutting\Utils\Solution.CrossCutting.Utils.csproj" />

@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Solution.CrossCutting.AspNetCore.Extensions;
 
-namespace Solution.Web.UserInterface
+namespace Solution.Api.Authentication
 {
 	public class Startup
 	{
@@ -13,7 +12,7 @@ namespace Solution.Web.UserInterface
 			Configuration = configuration;
 		}
 
-		private IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; }
 
 		public void Configure(IApplicationBuilder application)
 		{
@@ -22,11 +21,7 @@ namespace Solution.Web.UserInterface
 			application.UseCorsCustom();
 			application.UseHstsCustom();
 			application.UseHttpsRedirection();
-			application.UseStaticFiles();
-			application.UseSpaStaticFiles();
-			application.UseResponseCaching();
 			application.UseMvcWithDefaultRoute();
-			application.UseSpaCustom();
 		}
 
 		public void ConfigureServices(IServiceCollection services)
@@ -34,10 +29,7 @@ namespace Solution.Web.UserInterface
 			services.AddDependencyInjectionCustom(Configuration);
 			services.AddAuthenticationCustom();
 			services.AddCors();
-			services.AddResponseCaching();
-			services.AddMemoryCache();
 			services.AddMvcCustom();
-			services.AddSpaStaticFilesCustom();
 		}
 	}
 }

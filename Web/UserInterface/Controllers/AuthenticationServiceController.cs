@@ -2,9 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Solution.Application.Applications;
 using Solution.CrossCutting.Utils;
-using Solution.Model.Enums;
 using Solution.Model.Models;
-using Solution.Web.UserInterface.Attributes;
 
 namespace Solution.Web.UserInterface.Controllers
 {

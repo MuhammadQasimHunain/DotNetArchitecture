@@ -8,7 +8,7 @@ using Solution.CrossCutting.DependencyInjection;
 using Solution.CrossCutting.Logging;
 using Solution.CrossCutting.Utils;
 
-namespace Solution.Web.UserInterface.Middlewares
+namespace Solution.CrossCutting.AspNetCore.Middlewares
 {
 	public class ExceptionMiddleware
 	{

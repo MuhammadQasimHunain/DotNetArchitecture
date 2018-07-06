@@ -2,14 +2,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Solution.CrossCutting.DependencyInjection;
 using Solution.CrossCutting.Security;
-using Solution.Infrastructure.Database;
 
-namespace Solution.Web.UserInterface.Extensions
+namespace Solution.CrossCutting.AspNetCore.Extensions
 {
 	public static class ServiceCollectionExtensions
 	{
@@ -25,13 +23,6 @@ namespace Solution.Web.UserInterface.Extensions
 			}
 
 			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(JwtBearer);
-		}
-
-		public static void AddDependencyInjectionCustom(this IServiceCollection services, IConfiguration configuration)
-		{
-			DependencyInjector.RegisterServices(services);
-			DependencyInjector.AddDbContext<DatabaseContext>(configuration.GetConnectionString(nameof(DatabaseContext)));
-			DependencyInjector.GetService<DatabaseContext>().Seed();
 		}
 
 		public static void AddMvcCustom(this IServiceCollection services)

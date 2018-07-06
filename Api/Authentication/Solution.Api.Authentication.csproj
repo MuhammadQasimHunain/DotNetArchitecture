@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.1</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.App" />
+		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.4" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.4" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Application\Applications\Solution.Application.Applications.csproj" />
+		<ProjectReference Include="..\..\CrossCutting\AspNetCore\Solution.CrossCutting.AspNetCore.csproj" />
+		<ProjectReference Include="..\..\CrossCutting\DependencyInjection\Solution.CrossCutting.DependencyInjection.csproj" />
+		<ProjectReference Include="..\..\CrossCutting\Logging\Solution.CrossCutting.Logging.csproj" />
+		<ProjectReference Include="..\..\CrossCutting\Security\Solution.CrossCutting.Security.csproj" />
+		<ProjectReference Include="..\..\CrossCutting\Utils\Solution.CrossCutting.Utils.csproj" />
+		<ProjectReference Include="..\..\Infrastructure\Database\Solution.Infrastructure.Database.csproj" />
+		<ProjectReference Include="..\..\Model\Enums\Solution.Model.Enums.csproj" />
+		<ProjectReference Include="..\..\Model\Models\Solution.Model.Models.csproj" />
+	</ItemGroup>
+</Project>
