@@ -11,11 +11,7 @@
 		<ProjectReference Include="..\..\Application\Applications\Solution.Application.Applications.csproj" />
 		<ProjectReference Include="..\..\CrossCutting\AspNetCore\Solution.CrossCutting.AspNetCore.csproj" />
 		<ProjectReference Include="..\..\CrossCutting\DependencyInjection\Solution.CrossCutting.DependencyInjection.csproj" />
-		<ProjectReference Include="..\..\CrossCutting\Logging\Solution.CrossCutting.Logging.csproj" />
-		<ProjectReference Include="..\..\CrossCutting\Security\Solution.CrossCutting.Security.csproj" />
-		<ProjectReference Include="..\..\CrossCutting\Utils\Solution.CrossCutting.Utils.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\Database\Solution.Infrastructure.Database.csproj" />
-		<ProjectReference Include="..\..\Model\Enums\Solution.Model.Enums.csproj" />
 		<ProjectReference Include="..\..\Model\Models\Solution.Model.Models.csproj" />
 	</ItemGroup>
 </Project>
