@@ -13,7 +13,7 @@ Solution to apply and share new knowledge and technologies and to serve as archi
 * Entity Framework Core 2.1.1
 * C# 7.3
 * SPA (Single Page Application)
-* Angular 6.0.7
+* Angular 6.0.9
 * Typescript 2.7.2
 * HTML5
 * CSS3
