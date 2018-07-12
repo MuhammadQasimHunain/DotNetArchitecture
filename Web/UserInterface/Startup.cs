@@ -35,7 +35,6 @@ namespace Solution.Web.UserInterface
 			services.AddAuthenticationCustom();
 			services.AddCors();
 			services.AddResponseCaching();
-			services.AddMemoryCache();
 			services.AddMvcCustom();
 			services.AddSpaStaticFilesCustom();
 		}
