@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solution.CrossCutting.DependencyInjection;
@@ -23,322 +24,371 @@ namespace Solution.Infrastructure.Tests
 		private IDatabaseUnitOfWork Database { get; }
 
 		[TestMethod]
+		public void DatabaseUnitOfWorkUserRepositoryAdd()
+		{
+			var user = CreateUser();
+			Database.User.Add(user);
+			Database.SaveChanges();
+			Assert.IsNotNull(Database.User.Select(user.UserId));
+		}
+
+		[TestMethod]
+		public void DatabaseUnitOfWorkUserRepositoryAddAsynchronous()
+		{
+			var user = CreateUser();
+			Database.User.AddAsync(user);
+			Database.SaveChanges();
+			Assert.IsNotNull(Database.User.Select(user.UserId));
+		}
+
+		[TestMethod]
+		public void DatabaseUnitOfWorkUserRepositoryAddRange()
+		{
+			var count = Database.User.Count();
+			Database.User.AddRange(new List<UserModel> { CreateUser() });
+			Database.SaveChanges();
+			Assert.IsTrue(Database.User.Count() > count);
+		}
+
+		[TestMethod]
+		public void DatabaseUnitOfWorkUserRepositoryAddRangeAsynchronous()
+		{
+			var count = Database.User.Count();
+			Database.User.AddRangeAsync(new List<UserModel> { CreateUser() });
+			Database.SaveChanges();
+			Assert.IsTrue(Database.User.Count() > count);
+		}
+
+		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryAny()
 		{
-			var result = Database.User.Any();
-			Assert.IsTrue(result);
+			Assert.IsTrue(Database.User.Any());
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryAnyAsynchronous()
 		{
-			var result = Database.User.AnyAsync();
-			Assert.IsTrue(result.Result);
+			Assert.IsTrue(Database.User.AnyAsync().Result);
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryAnyWhere()
 		{
-			var result = Database.User.Any(w => w.UserId == 1);
-			Assert.IsTrue(result);
+			Assert.IsTrue(Database.User.Any(x => x.UserId == 1L));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryAnyWhereAsynchronous()
 		{
-			var result = Database.User.AnyAsync(w => w.UserId == 1);
-			Assert.IsTrue(result.Result);
+			Assert.IsTrue(Database.User.AnyAsync(x => x.UserId == 1L).Result);
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryCount()
 		{
-			var result = Database.User.Count();
-			Assert.IsTrue(result > 0);
+			Assert.IsTrue(Database.User.Count() > 0);
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryCountAsynchronous()
 		{
-			var result = Database.User.CountAsync();
-			Assert.IsTrue(result.Result > 0);
+			Assert.IsTrue(Database.User.CountAsync().Result > 0);
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryCountWhere()
 		{
-			var result = Database.User.Count(w => w.UserId == 1);
-			Assert.IsTrue(result > 0);
+			Assert.IsTrue(Database.User.Count(x => x.UserId == 1) == 1L);
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryCountWhereAsynchronous()
 		{
-			var result = Database.User.CountAsync(w => w.UserId == 1);
-			Assert.IsTrue(result.Result > 0);
+			Assert.IsTrue(Database.User.CountAsync(x => x.UserId == 1L).Result == 1L);
+		}
+
+		[TestMethod]
+		public void DatabaseUnitOfWorkUserRepositoryDelete()
+		{
+			Database.User.Delete(100L);
+			Database.SaveChanges();
+		}
+
+		[TestMethod]
+		public void DatabaseUnitOfWorkUserRepositoryDeleteAsynchronous()
+		{
+			Database.User.DeleteAsync(100L);
+			Database.SaveChanges();
+		}
+
+		[TestMethod]
+		public void DatabaseUnitOfWorkUserRepositoryDeleteWhere()
+		{
+			Database.User.Delete(x => x.UserId == 100L);
+			Database.SaveChanges();
+		}
+
+		[TestMethod]
+		public void DatabaseUnitOfWorkUserRepositoryDeleteWhereAsynchronous()
+		{
+			Database.User.DeleteAsync(x => x.UserId == 100L);
+			Database.SaveChanges();
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryFirstOrDefault()
 		{
-			var result = Database.User.FirstOrDefault();
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.FirstOrDefault());
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultAsynchronous()
 		{
-			var result = Database.User.FirstOrDefaultAsync();
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.FirstOrDefaultAsync().Result);
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultInclude()
 		{
-			var result = Database.User.FirstOrDefault(i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.FirstOrDefault(i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultIncludeAsynchronous()
 		{
-			var result = Database.User.FirstOrDefaultAsync(i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.FirstOrDefaultAsync(i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultWhere()
 		{
-			var result = Database.User.FirstOrDefault(w => w.UserId == 1);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.FirstOrDefault(x => x.UserId == 1L));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultWhereAsynchronous()
 		{
-			var result = Database.User.FirstOrDefaultAsync(w => w.UserId == 1);
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.FirstOrDefaultAsync(x => x.UserId == 1L));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultWhereInclude()
 		{
-			var result = Database.User.FirstOrDefault(w => w.UserId == 1, i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.FirstOrDefault(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultWhereIncludeAsynchronous()
 		{
-			var result = Database.User.FirstOrDefaultAsync(w => w.UserId == 1, i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.FirstOrDefaultAsync(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryLastOrDefault()
 		{
-			var result = Database.User.LastOrDefault();
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.LastOrDefault());
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryLastOrDefaultAsynchronous()
 		{
-			var result = Database.User.LastOrDefaultAsync();
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.LastOrDefaultAsync());
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryLastOrDefaultInclude()
 		{
-			var result = Database.User.LastOrDefault(i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.LastOrDefault(i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryLastOrDefaultIncludeAsynchronous()
 		{
-			var result = Database.User.LastOrDefaultAsync(i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.LastOrDefaultAsync(i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryLastOrDefaultWhere()
 		{
-			var result = Database.User.LastOrDefault(w => w.UserId == 1);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.LastOrDefault(x => x.UserId == 1L));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryLastOrDefaultWhereAsynchronous()
 		{
-			var result = Database.User.LastOrDefaultAsync(w => w.UserId == 1);
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.LastOrDefaultAsync(x => x.UserId == 1L));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryLastOrDefaultWhereInclude()
 		{
-			var result = Database.User.LastOrDefault(w => w.UserId == 1, i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.LastOrDefault(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryLastOrDefaultWhereIncludeAsynchronous()
 		{
-			var result = Database.User.LastOrDefaultAsync(w => w.UserId == 1, i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.LastOrDefaultAsync(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryList()
 		{
-			var result = Database.User.List();
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.List());
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListAsynchronous()
 		{
-			var result = Database.User.ListAsync();
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.ListAsync());
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListInclude()
 		{
-			var result = Database.User.List(i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.List(i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListIncludeAsynchronous()
 		{
-			var result = Database.User.ListAsync(i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.ListAsync(i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListPaged()
 		{
-			var result = Database.User.List(new PagedListParameters());
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.List(new PagedListParameters()));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListPagedInclude()
 		{
-			var result = Database.User.List(new PagedListParameters(), i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.List(new PagedListParameters(), i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListPagedWhere()
 		{
-			var result = Database.User.List(new PagedListParameters(), w => w.UserId == 1);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.List(new PagedListParameters(), x => x.UserId == 1L));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListPagedWhereInclude()
 		{
-			var result = Database.User.List(new PagedListParameters(), w => w.UserId == 1, i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.List(new PagedListParameters(), x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListWhere()
 		{
-			var result = Database.User.List(w => w.UserId == 1);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.List(x => x.UserId == 1L));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListWhereAsynchronous()
 		{
-			var result = Database.User.ListAsync(w => w.UserId == 1);
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.ListAsync(x => x.UserId == 1L));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListWhereInclude()
 		{
-			var result = Database.User.List(w => w.UserId == 1, i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.List(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListWhereIncludeAsynchronous()
 		{
-			var result = Database.User.ListAsync(w => w.UserId == 1, i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.ListAsync(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryQueryable()
 		{
-			var result = Database.User.Queryable.OrderByDescending(o => o.UserId).FirstOrDefault();
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.Queryable.OrderByDescending(o => o.UserId).FirstOrDefault());
+		}
+
+		[TestMethod]
+		public void DatabaseUnitOfWorkUserRepositorySelect()
+		{
+			Assert.IsNotNull(Database.User.Select(1L));
+		}
+
+		[TestMethod]
+		public void DatabaseUnitOfWorkUserRepositorySelectAsynchronous()
+		{
+			Assert.IsNotNull(Database.User.SelectAsync(1L).Result);
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositorySingleOrDefaultWhere()
 		{
-			var result = Database.User.SingleOrDefault(w => w.UserId == 1);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.SingleOrDefault(x => x.UserId == 1L));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositorySingleOrDefaultWhereAsynchronous()
 		{
-			var result = Database.User.SingleOrDefaultAsync(w => w.UserId == 1);
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.SingleOrDefaultAsync(x => x.UserId == 1L));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositorySingleOrDefaultWhereInclude()
 		{
-			var result = Database.User.SingleOrDefault(w => w.UserId == 1, i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result);
+			Assert.IsNotNull(Database.User.SingleOrDefault(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositorySingleOrDefaultWhereIncludeAsynchronous()
 		{
-			var result = Database.User.SingleOrDefaultAsync(w => w.UserId == 1, i => i.UsersLogs, i => i.UsersRoles);
-			Assert.IsNotNull(result.Result);
+			Assert.IsNotNull(Database.User.SingleOrDefaultAsync(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryUpdate()
 		{
-			var guid = Guid.NewGuid();
-			var user = Database.User.SingleOrDefault(w => w.UserId == 1L);
-			user.Name = guid.ToString();
+			var user = Database.User.Select(1L);
+			user.Name = Guid.NewGuid().ToString();
 			Database.User.Update(user, 1L);
 			Database.SaveChanges();
-			user = Database.User.SingleOrDefault(w => w.UserId == 1L);
+			Assert.AreEqual(user.Name, Database.User.Select(1L).Name);
+		}
 
-			Assert.AreEqual(user.Name, guid.ToString());
+		[TestMethod]
+		public void DatabaseUnitOfWorkUserRepositoryUpdateAsynchronous()
+		{
+			var user = Database.User.Select(1L);
+			user.Name = Guid.NewGuid().ToString();
+			Database.User.UpdateAsync(user, 1L);
+			Database.SaveChanges();
+			Assert.AreEqual(user.Name, Database.User.Select(1L).Name);
+		}
+
+		private static UserModel CreateUser()
+		{
+			var guid = Guid.NewGuid().ToString();
+
+			var user = new UserModel
+			{
+				Name = $"Name {guid}",
+				Surname = $"Surname {guid}",
+				Email = $"email{guid}@email.com",
+				Login = $"login{guid}",
+				Password = $"password{guid}",
+				Status = Status.Active
+			};
+
+			user.UsersRoles.Add(new UserRoleModel { Role = Roles.Admin });
+
+			return user;
 		}
 
 		private void SeedDatabase()
 		{
-			for (var i = 1; i < 100; i++)
+			for (var i = 1L; i <= 100; i++)
 			{
-				var user = new UserModel
-				{
-					Name = $"Name {i}",
-					Surname = $"Surname {i}",
-					Email = $"email{i}@email.com",
-					Login = $"login{i}",
-					Password = $"password{i}",
-					Status = Status.Active
-				};
-
-				user.UsersRoles.Add(new UserRoleModel { Role = Roles.Admin });
-
-				Database.User.Add(user);
+				Database.User.Add(CreateUser());
 			}
 
 			Database.SaveChanges();
