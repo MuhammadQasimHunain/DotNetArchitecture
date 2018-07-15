@@ -33,12 +33,12 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 			await Set.AddAsync(entity).ConfigureAwait(false);
 		}
 
-		public void AddRange(params TEntity[] entities)
+		public void AddRange(IEnumerable<TEntity> entities)
 		{
 			Set.AddRange(entities);
 		}
 
-		public async Task AddRangeAsync(params TEntity[] entities)
+		public async Task AddRangeAsync(IEnumerable<TEntity> entities)
 		{
 			await Set.AddRangeAsync(entities).ConfigureAwait(false);
 		}

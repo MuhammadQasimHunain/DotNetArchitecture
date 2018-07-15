@@ -14,9 +14,9 @@ namespace Solution.CrossCutting.Utils
 
 		Task AddAsync(TEntity entity);
 
-		void AddRange(params TEntity[] entities);
+		void AddRange(IEnumerable<TEntity> entities);
 
-		Task AddRangeAsync(params TEntity[] entities);
+		Task AddRangeAsync(IEnumerable<TEntity> entities);
 
 		bool Any();
 
