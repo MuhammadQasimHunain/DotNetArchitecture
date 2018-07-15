@@ -210,12 +210,7 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 
 		public void Update(TEntity entity, params object[] keys)
 		{
-			var entityContext = Select(keys);
-
-			if (entityContext != null)
-			{
-				Context.Entry(entityContext).CurrentValues.SetValues(entity);
-			}
+			Context.Entry(Select(keys)).CurrentValues.SetValues(entity);
 		}
 
 		private static IQueryable<TEntity> Include(IQueryable<TEntity> queryable, Expression<Func<TEntity, object>>[] properties)
