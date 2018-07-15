@@ -3,7 +3,7 @@ using Solution.Model.Models;
 
 namespace Solution.Infrastructure.Database
 {
-	public interface IUserRoleRepository : IRepository<UserRoleModel>
+	public interface IUserRoleRepository : IRelationalRepository<UserRoleModel>
 	{
 	}
 }

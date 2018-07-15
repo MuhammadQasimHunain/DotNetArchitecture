@@ -1,89 +1,66 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Solution.CrossCutting.Utils
 {
-	public interface IRepository<TEntity> where TEntity : class
+	public interface IRepository<T> where T : class
 	{
-		IQueryable<TEntity> Queryable { get; }
+		void Add(T item);
 
-		void Add(TEntity entity);
+		Task AddAsync(T item);
 
-		Task AddAsync(TEntity entity);
+		void AddRange(IEnumerable<T> list);
 
-		void AddRange(IEnumerable<TEntity> entities);
-
-		Task AddRangeAsync(IEnumerable<TEntity> entities);
+		Task AddRangeAsync(IEnumerable<T> list);
 
 		bool Any();
 
-		bool Any(Expression<Func<TEntity, bool>> where);
+		bool Any(Expression<Func<T, bool>> where);
 
 		Task<bool> AnyAsync();
 
-		Task<bool> AnyAsync(Expression<Func<TEntity, bool>> where);
+		Task<bool> AnyAsync(Expression<Func<T, bool>> where);
 
 		long Count();
 
-		long Count(Expression<Func<TEntity, bool>> where);
+		long Count(Expression<Func<T, bool>> where);
 
 		Task<long> CountAsync();
 
-		Task<long> CountAsync(Expression<Func<TEntity, bool>> where);
+		Task<long> CountAsync(Expression<Func<T, bool>> where);
 
-		void Delete(params object[] keys);
+		void Delete(object key);
 
-		TEntity FirstOrDefault(params Expression<Func<TEntity, object>>[] include);
+		void Delete(Expression<Func<T, bool>> where);
 
-		TEntity FirstOrDefault(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include);
+		Task DeleteAsync(object key);
 
-		Task<TEntity> FirstOrDefaultAsync(params Expression<Func<TEntity, object>>[] include);
+		Task DeleteAsync(Expression<Func<T, bool>> where);
 
-		Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include);
+		T FirstOrDefault(Expression<Func<T, bool>> where);
 
-		TEntityResult FirstOrDefaultResult<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select);
+		Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> where);
 
-		Task<TEntityResult> FirstOrDefaultResultAsync<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select);
+		IEnumerable<T> List();
 
-		TEntity LastOrDefault(params Expression<Func<TEntity, object>>[] include);
+		IEnumerable<T> List(Expression<Func<T, bool>> where);
 
-		TEntity LastOrDefault(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include);
+		Task<IEnumerable<T>> ListAsync();
 
-		Task<TEntity> LastOrDefaultAsync(params Expression<Func<TEntity, object>>[] include);
+		Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> where);
 
-		Task<TEntity> LastOrDefaultAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include);
+		T Select(object key);
 
-		TEntityResult LastOrDefaultResult<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select);
+		Task<T> SelectAsync(object key);
 
-		Task<TEntityResult> LastOrDefaultResultAsync<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select);
+		T SingleOrDefault(Expression<Func<T, bool>> where);
 
-		IEnumerable<TEntity> List(params Expression<Func<TEntity, object>>[] include);
+		Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> where);
 
-		IEnumerable<TEntity> List(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include);
+		void Update(T item, object key);
 
-		PagedList<TEntity> List(PagedListParameters parameters, params Expression<Func<TEntity, object>>[] include);
-
-		PagedList<TEntity> List(PagedListParameters parameters, Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include);
-
-		Task<IEnumerable<TEntity>> ListAsync(params Expression<Func<TEntity, object>>[] include);
-
-		Task<IEnumerable<TEntity>> ListAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include);
-
-		TEntity Select(params object[] keys);
-
-		Task<TEntity> SelectAsync(params object[] keys);
-
-		TEntity SingleOrDefault(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include);
-
-		Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include);
-
-		TEntityResult SingleOrDefaultResult<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select);
-
-		Task<TEntityResult> SingleOrDefaultResultAsync<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select);
-
-		void Update(TEntity entity, params object[] keys);
+		Task UpdateAsync(T item, object key);
 	}
 }

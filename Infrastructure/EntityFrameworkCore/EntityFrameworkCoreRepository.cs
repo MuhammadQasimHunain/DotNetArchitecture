@@ -8,7 +8,7 @@ using Solution.CrossCutting.Utils;
 
 namespace Solution.Infrastructure.EntityFrameworkCore
 {
-	public class EntityFrameworkCoreRepository<TEntity> : IRepository<TEntity> where TEntity : class
+	public class EntityFrameworkCoreRepository<T> : IRelationalRepository<T> where T : class
 	{
 		protected EntityFrameworkCoreRepository(DbContext context)
 		{
@@ -17,30 +17,30 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 			Context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 		}
 
-		public IQueryable<TEntity> Queryable => Set.AsNoTracking();
+		public IQueryable<T> Queryable => Set.AsNoTracking();
 
-		private DbSet<TEntity> Set => Context.Set<TEntity>();
+		private DbSet<T> Set => Context.Set<T>();
 
 		private DbContext Context { get; }
 
-		public void Add(TEntity entity)
+		public void Add(T item)
 		{
-			Set.Add(entity);
+			Set.Add(item);
 		}
 
-		public async Task AddAsync(TEntity entity)
+		public async Task AddAsync(T item)
 		{
-			await Set.AddAsync(entity).ConfigureAwait(false);
+			await Set.AddAsync(item).ConfigureAwait(false);
 		}
 
-		public void AddRange(IEnumerable<TEntity> entities)
+		public void AddRange(IEnumerable<T> list)
 		{
-			Set.AddRange(entities);
+			Set.AddRange(list);
 		}
 
-		public async Task AddRangeAsync(IEnumerable<TEntity> entities)
+		public async Task AddRangeAsync(IEnumerable<T> list)
 		{
-			await Set.AddRangeAsync(entities).ConfigureAwait(false);
+			await Set.AddRangeAsync(list).ConfigureAwait(false);
 		}
 
 		public bool Any()
@@ -48,7 +48,7 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 			return Set.Any();
 		}
 
-		public bool Any(Expression<Func<TEntity, bool>> where)
+		public bool Any(Expression<Func<T, bool>> where)
 		{
 			return Set.Any(where);
 		}
@@ -58,7 +58,7 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 			return Set.AnyAsync();
 		}
 
-		public Task<bool> AnyAsync(Expression<Func<TEntity, bool>> where)
+		public Task<bool> AnyAsync(Expression<Func<T, bool>> where)
 		{
 			return Set.AnyAsync(where);
 		}
@@ -68,7 +68,7 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 			return Set.LongCount();
 		}
 
-		public long Count(Expression<Func<TEntity, bool>> where)
+		public long Count(Expression<Func<T, bool>> where)
 		{
 			return Set.LongCount(where);
 		}
@@ -78,160 +78,228 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 			return Set.LongCountAsync();
 		}
 
-		public Task<long> CountAsync(Expression<Func<TEntity, bool>> where)
+		public Task<long> CountAsync(Expression<Func<T, bool>> where)
 		{
 			return Set.LongCountAsync(where);
 		}
 
-		public void Delete(params object[] keys)
+		public void Delete(object key)
 		{
-			Set.Remove(Select(keys));
+			Set.Remove(Select(key));
 		}
 
-		public TEntity FirstOrDefault(params Expression<Func<TEntity, object>>[] include)
+		public void Delete(Expression<Func<T, bool>> where)
+		{
+			Set.RemoveRange(List(where));
+		}
+
+		public async Task DeleteAsync(object key)
+		{
+			Delete(key);
+			await Task.CompletedTask;
+		}
+
+		public async Task DeleteAsync(Expression<Func<T, bool>> where)
+		{
+			Delete(where);
+			await Task.CompletedTask;
+		}
+
+		public T FirstOrDefault(Expression<Func<T, bool>> where)
+		{
+			return QueryableWhere(where).FirstOrDefault();
+		}
+
+		public T FirstOrDefault(params Expression<Func<T, object>>[] include)
 		{
 			return QueryableInclude(include).FirstOrDefault();
 		}
 
-		public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
+		public T FirstOrDefault(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
 		{
 			return QueryableWhereInclude(where, include).FirstOrDefault();
 		}
 
-		public Task<TEntity> FirstOrDefaultAsync(params Expression<Func<TEntity, object>>[] include)
+		public Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> where)
+		{
+			return QueryableWhere(where).FirstOrDefaultAsync();
+		}
+
+		public Task<T> FirstOrDefaultAsync(params Expression<Func<T, object>>[] include)
 		{
 			return QueryableInclude(include).FirstOrDefaultAsync();
 		}
 
-		public Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
+		public Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
 		{
 			return QueryableWhereInclude(where, include).FirstOrDefaultAsync();
 		}
 
-		public TEntityResult FirstOrDefaultResult<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
+		public TEntityResult FirstOrDefaultResult<TEntityResult>(Expression<Func<T, bool>> where, Expression<Func<T, TEntityResult>> select)
 		{
 			return QueryableWhereSelect(where, select).FirstOrDefault();
 		}
 
-		public Task<TEntityResult> FirstOrDefaultResultAsync<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
+		public Task<TEntityResult> FirstOrDefaultResultAsync<TEntityResult>(Expression<Func<T, bool>> where, Expression<Func<T, TEntityResult>> select)
 		{
 			return QueryableWhereSelect(where, select).FirstOrDefaultAsync();
 		}
 
-		public TEntity LastOrDefault(params Expression<Func<TEntity, object>>[] include)
+		public T LastOrDefault(params Expression<Func<T, object>>[] include)
 		{
 			return QueryableInclude(include).LastOrDefault();
 		}
 
-		public TEntity LastOrDefault(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
+		public T LastOrDefault(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
 		{
 			return QueryableWhereInclude(where, include).LastOrDefault();
 		}
 
-		public Task<TEntity> LastOrDefaultAsync(params Expression<Func<TEntity, object>>[] include)
+		public Task<T> LastOrDefaultAsync(params Expression<Func<T, object>>[] include)
 		{
 			return QueryableInclude(include).LastOrDefaultAsync();
 		}
 
-		public Task<TEntity> LastOrDefaultAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
+		public Task<T> LastOrDefaultAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
 		{
 			return QueryableWhereInclude(where, include).LastOrDefaultAsync();
 		}
 
-		public TEntityResult LastOrDefaultResult<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
+		public TEntityResult LastOrDefaultResult<TEntityResult>(Expression<Func<T, bool>> where, Expression<Func<T, TEntityResult>> select)
 		{
 			return QueryableWhereSelect(where, select).LastOrDefault();
 		}
 
-		public Task<TEntityResult> LastOrDefaultResultAsync<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
+		public Task<TEntityResult> LastOrDefaultResultAsync<TEntityResult>(Expression<Func<T, bool>> where, Expression<Func<T, TEntityResult>> select)
 		{
 			return QueryableWhereSelect(where, select).LastOrDefaultAsync();
 		}
 
-		public IEnumerable<TEntity> List(params Expression<Func<TEntity, object>>[] include)
+		public IEnumerable<T> List()
+		{
+			return Set.ToList();
+		}
+
+		public IEnumerable<T> List(Expression<Func<T, bool>> where)
+		{
+			return QueryableWhere(where).ToList();
+		}
+
+		public IEnumerable<T> List(params Expression<Func<T, object>>[] include)
 		{
 			return QueryableInclude(include).ToList();
 		}
 
-		public IEnumerable<TEntity> List(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
+		public IEnumerable<T> List(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
 		{
 			return QueryableWhereInclude(where, include).ToList();
 		}
 
-		public PagedList<TEntity> List(PagedListParameters parameters, params Expression<Func<TEntity, object>>[] include)
+		public PagedList<T> List(PagedListParameters parameters, params Expression<Func<T, object>>[] include)
 		{
-			return new PagedList<TEntity>(QueryableInclude(include), parameters);
+			return new PagedList<T>(QueryableInclude(include), parameters);
 		}
 
-		public PagedList<TEntity> List(PagedListParameters parameters, Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
+		public PagedList<T> List(PagedListParameters parameters, Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
 		{
-			return new PagedList<TEntity>(QueryableWhereInclude(where, include), parameters);
+			return new PagedList<T>(QueryableWhereInclude(where, include), parameters);
 		}
 
-		public async Task<IEnumerable<TEntity>> ListAsync(params Expression<Func<TEntity, object>>[] include)
+		public async Task<IEnumerable<T>> ListAsync()
+		{
+			return await Set.ToListAsync().ConfigureAwait(false);
+		}
+
+		public async Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> where)
+		{
+			return await QueryableWhere(where).ToListAsync().ConfigureAwait(false);
+		}
+
+		public async Task<IEnumerable<T>> ListAsync(params Expression<Func<T, object>>[] include)
 		{
 			return await QueryableInclude(include).ToListAsync().ConfigureAwait(false);
 		}
 
-		public async Task<IEnumerable<TEntity>> ListAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
+		public async Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
 		{
 			return await QueryableWhereInclude(where, include).ToListAsync().ConfigureAwait(false);
 		}
 
-		public TEntity Select(params object[] keys)
+		public T Select(object key)
 		{
-			return Set.Find(keys);
+			return Set.Find(key);
 		}
 
-		public Task<TEntity> SelectAsync(params object[] keys)
+		public Task<T> SelectAsync(object key)
 		{
-			return Set.FindAsync(keys);
+			return Set.FindAsync(key);
 		}
 
-		public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
+		public T SingleOrDefault(Expression<Func<T, bool>> where)
+		{
+			return QueryableWhere(where).SingleOrDefault();
+		}
+
+		public T SingleOrDefault(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
 		{
 			return QueryableWhereInclude(where, include).SingleOrDefault();
 		}
 
-		public Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
+		public Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> where)
+		{
+			return QueryableWhere(where).SingleOrDefaultAsync();
+		}
+
+		public Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
 		{
 			return QueryableWhereInclude(where, include).SingleOrDefaultAsync();
 		}
 
-		public TEntityResult SingleOrDefaultResult<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
+		public TEntityResult SingleOrDefaultResult<TEntityResult>(Expression<Func<T, bool>> where, Expression<Func<T, TEntityResult>> select)
 		{
 			return QueryableWhereSelect(where, select).SingleOrDefault();
 		}
 
-		public Task<TEntityResult> SingleOrDefaultResultAsync<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
+		public Task<TEntityResult> SingleOrDefaultResultAsync<TEntityResult>(Expression<Func<T, bool>> where, Expression<Func<T, TEntityResult>> select)
 		{
 			return QueryableWhereSelect(where, select).SingleOrDefaultAsync();
 		}
 
-		public void Update(TEntity entity, params object[] keys)
+		public void Update(T item, object key)
 		{
-			Context.Entry(Select(keys)).CurrentValues.SetValues(entity);
+			Context.Entry(Select(key)).CurrentValues.SetValues(item);
 		}
 
-		private static IQueryable<TEntity> Include(IQueryable<TEntity> queryable, Expression<Func<TEntity, object>>[] properties)
+		public async Task UpdateAsync(T item, object key)
+		{
+			Update(item, key);
+			await Task.CompletedTask;
+		}
+
+		private static IQueryable<T> Include(IQueryable<T> queryable, Expression<Func<T, object>>[] properties)
 		{
 			properties?.ToList().ForEach(property => queryable = queryable.Include(property));
 			return queryable;
 		}
 
-		private IQueryable<TEntity> QueryableInclude(Expression<Func<TEntity, object>>[] include)
+		private IQueryable<T> QueryableInclude(Expression<Func<T, object>>[] include)
 		{
 			return Include(Queryable, include);
 		}
 
-		private IQueryable<TEntity> QueryableWhereInclude(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, object>>[] include)
+		private IQueryable<T> QueryableWhere(Expression<Func<T, bool>> where)
 		{
-			return Include(Queryable.Where(where), include);
+			return Queryable.Where(where);
 		}
 
-		private IQueryable<TEntityResult> QueryableWhereSelect<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
+		private IQueryable<T> QueryableWhereInclude(Expression<Func<T, bool>> where, Expression<Func<T, object>>[] include)
 		{
-			return Queryable.Where(where).Select(select);
+			return Include(QueryableWhere(where), include);
+		}
+
+		private IQueryable<TEntityResult> QueryableWhereSelect<TEntityResult>(Expression<Func<T, bool>> where, Expression<Func<T, TEntityResult>> select)
+		{
+			return QueryableWhere(where).Select(select);
 		}
 	}
 }
