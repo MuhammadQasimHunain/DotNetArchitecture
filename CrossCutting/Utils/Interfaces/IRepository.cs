@@ -34,7 +34,7 @@ namespace Solution.CrossCutting.Utils
 
 		Task<long> CountAsync(Expression<Func<TEntity, bool>> where);
 
-		void Delete(object key);
+		void Delete(params object[] keys);
 
 		TEntity FirstOrDefault(params Expression<Func<TEntity, object>>[] include);
 
@@ -72,9 +72,9 @@ namespace Solution.CrossCutting.Utils
 
 		Task<IEnumerable<TEntity>> ListAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include);
 
-		TEntity Select(long id);
+		TEntity Select(params object[] keys);
 
-		Task<TEntity> SelectAsync(long id);
+		Task<TEntity> SelectAsync(params object[] keys);
 
 		TEntity SingleOrDefault(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include);
 
@@ -84,6 +84,6 @@ namespace Solution.CrossCutting.Utils
 
 		Task<TEntityResult> SingleOrDefaultResultAsync<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select);
 
-		void Update(TEntity entity, object key);
+		void Update(TEntity entity, params object[] keys);
 	}
 }

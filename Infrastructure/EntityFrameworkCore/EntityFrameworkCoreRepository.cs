@@ -83,16 +83,9 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 			return Set.LongCountAsync(where);
 		}
 
-		public void Delete(object key)
+		public void Delete(params object[] keys)
 		{
-			var entity = Set.Find(key);
-
-			if (entity == null)
-			{
-				return;
-			}
-
-			Set.Remove(entity);
+			Set.Remove(Select(keys));
 		}
 
 		public TEntity FirstOrDefault(params Expression<Func<TEntity, object>>[] include)
@@ -185,14 +178,14 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 			return await QueryableWhereInclude(where, include).ToListAsync().ConfigureAwait(false);
 		}
 
-		public TEntity Select(long id)
+		public TEntity Select(params object[] keys)
 		{
-			return Set.Find(id);
+			return Set.Find(keys);
 		}
 
-		public Task<TEntity> SelectAsync(long id)
+		public Task<TEntity> SelectAsync(params object[] keys)
 		{
-			return Set.FindAsync(id);
+			return Set.FindAsync(keys);
 		}
 
 		public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
@@ -215,9 +208,9 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 			return QueryableWhereSelect(where, select).SingleOrDefaultAsync();
 		}
 
-		public void Update(TEntity entity, object key)
+		public void Update(TEntity entity, params object[] keys)
 		{
-			var entityContext = Set.Find(key);
+			var entityContext = Select(keys);
 
 			if (entityContext != null)
 			{
@@ -225,7 +218,7 @@ namespace Solution.Infrastructure.EntityFrameworkCore
 			}
 		}
 
-		private IQueryable<TEntity> Include(IQueryable<TEntity> queryable, Expression<Func<TEntity, object>>[] properties)
+		private static IQueryable<TEntity> Include(IQueryable<TEntity> queryable, Expression<Func<TEntity, object>>[] properties)
 		{
 			properties?.ToList().ForEach(property => queryable = queryable.Include(property));
 			return queryable;
