@@ -6,12 +6,12 @@ import { routes } from "./app.routes";
 import { LayoutModule } from "./layout/layout.module";
 
 @NgModule({
-	bootstrap: [AppComponent],
-	declarations: [AppComponent],
-	imports: [
-		BrowserModule,
-		RouterModule.forRoot(routes),
-		LayoutModule
-	]
+    bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(routes),
+        LayoutModule
+    ]
 })
 export class AppModule { }

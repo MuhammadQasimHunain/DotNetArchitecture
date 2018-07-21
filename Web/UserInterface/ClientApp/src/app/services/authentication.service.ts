@@ -6,32 +6,32 @@ import { TokenService } from "../shared/services/token.service";
 
 @Injectable({ providedIn: "root" })
 export class AuthenticationService {
-	private service = "AuthenticationService";
+    private service = "Authentication";
 
-	constructor(
-		private readonly http: HttpClient,
-		private readonly router: Router,
-		private readonly tokenService: TokenService) { }
+    constructor(
+        private readonly http: HttpClient,
+        private readonly router: Router,
+        private readonly tokenService: TokenService) { }
 
-	authenticate(authentication: AuthenticationModel): void {
-		this.http
-			.post(`${this.service}/Authenticate`, authentication, { responseType: "text" })
-			.subscribe((token: string) => {
-				this.tokenService.set(token);
-				this.router.navigate(["/home"]);
-			});
-	}
+    authenticate(authentication: AuthenticationModel): void {
+        this.http
+            .post(`${this.service}/Authenticate`, authentication, { responseType: "text" })
+            .subscribe((token: string) => {
+                this.tokenService.set(token);
+                this.router.navigate(["/home"]);
+            });
+    }
 
-	isAuthenticated(): boolean {
-		return this.tokenService.exists();
-	}
+    isAuthenticated(): boolean {
+        return this.tokenService.exists();
+    }
 
-	logout() {
-		if (this.isAuthenticated()) {
-			this.http.post(`${this.service}/Logout`, {}).subscribe();
-		}
+    logout() {
+        if (this.isAuthenticated()) {
+            this.http.post(`${this.service}/Logout`, {}).subscribe();
+        }
 
-		this.tokenService.clear();
-		this.router.navigate(["/login"]);
-	}
+        this.tokenService.clear();
+        this.router.navigate(["/login"]);
+    }
 }

@@ -1,4 +1,4 @@
-﻿export class AuthenticationModel {
-	login: string;
-	password: string;
+export class AuthenticationModel {
+    login: string;
+    password: string;
 }

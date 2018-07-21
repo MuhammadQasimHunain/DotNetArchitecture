@@ -4,16 +4,16 @@ import { cache } from "../shared/utils/rxjs.utils";
 
 @Injectable({ providedIn: "root" })
 export class ApplicationService {
-	data: any;
-	service = "ApplicationService";
+    data: any;
+    service = "Application";
 
-	constructor(private readonly http: HttpClient) { }
+    constructor(private readonly http: HttpClient) { }
 
-	get() {
-		if (!this.data) {
-			this.data = this.http.get(this.service).pipe(cache);
-		}
+    get() {
+        if (!this.data) {
+            this.data = this.http.get(this.service).pipe(cache);
+        }
 
-		return this.data;
-	}
+        return this.data;
+    }
 }

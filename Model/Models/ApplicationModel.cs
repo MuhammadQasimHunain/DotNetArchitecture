@@ -1,11 +1,7 @@
-using System.Collections;
-using Solution.CrossCutting.Resources;
-using Solution.CrossCutting.Utils;
-
 namespace Solution.Model.Models
 {
-	public class ApplicationModel
-	{
-		public IDictionary Texts { get; } = typeof(Texts).ToDictionary();
-	}
+    public class ApplicationModel
+    {
+        public string Version { get; set; } = "1.0.0.0";
+    }
 }

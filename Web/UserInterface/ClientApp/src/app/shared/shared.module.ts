@@ -9,27 +9,27 @@ import { HandlersModule } from "./handlers/handlers.module";
 import { InterceptorsModule } from "./interceptors/interceptors.module";
 
 @NgModule({
-	exports: [
-		CommonModule,
-		FormsModule,
-		HttpClientModule,
-		ReactiveFormsModule,
-		ComponentsModule,
-		DirectivesModule,
-		GuardsModule,
-		HandlersModule,
-		InterceptorsModule
-	],
-	imports: [
-		CommonModule,
-		FormsModule,
-		HttpClientModule,
-		ReactiveFormsModule,
-		ComponentsModule,
-		DirectivesModule,
-		GuardsModule,
-		HandlersModule,
-		InterceptorsModule
-	]
+    exports: [
+        CommonModule,
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        ComponentsModule,
+        DirectivesModule,
+        GuardsModule,
+        HandlersModule,
+        InterceptorsModule
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        ComponentsModule,
+        DirectivesModule,
+        GuardsModule,
+        HandlersModule,
+        InterceptorsModule
+    ]
 })
 export class SharedModule { }

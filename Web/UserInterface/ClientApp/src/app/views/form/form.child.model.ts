@@ -1,3 +1,3 @@
-﻿export class FormChildModel {
-	string: string;
+export class FormChildModel {
+    string: string;
 }

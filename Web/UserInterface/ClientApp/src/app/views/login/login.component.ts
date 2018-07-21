@@ -4,14 +4,14 @@ import { AuthenticationService } from "../../services/authentication.service";
 
 @Component({ selector: "app-login", templateUrl: "./login.component.html" })
 export class LoginComponent {
-	authentication = new AuthenticationModel();
+    authentication = new AuthenticationModel();
 
-	constructor(private readonly authenticationService: AuthenticationService) {
-		this.authentication.login = "admin";
-		this.authentication.password = "admin";
-	}
+    constructor(private readonly authenticationService: AuthenticationService) {
+        this.authentication.login = "admin";
+        this.authentication.password = "admin";
+    }
 
-	ngSubmit() {
-		this.authenticationService.authenticate(this.authentication);
-	}
+    ngSubmit() {
+        this.authenticationService.authenticate(this.authentication);
+    }
 }
