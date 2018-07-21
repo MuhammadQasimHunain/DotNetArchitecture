@@ -13,6 +13,7 @@ namespace Solution.Infrastructure.Database
 		}
 
 		public IUserRepository User { get; }
+
 		public IUserLogRepository UserLog { get; }
 
 		private DatabaseContext Context { get; set; }

@@ -10,6 +10,7 @@ namespace Solution.Infrastructure.Database
 		}
 
 		public DbSet<UserModel> Users { get; set; }
+
 		public DbSet<UserLogModel> UsersLogs { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
