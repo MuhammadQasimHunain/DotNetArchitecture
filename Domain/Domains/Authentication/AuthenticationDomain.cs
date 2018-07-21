@@ -48,8 +48,7 @@ namespace Solution.Domain.Domains
 
 		private string GetJwt(AuthenticatedModel authenticated)
 		{
-			var roles = authenticated.Roles.Select(role => role.ToString()).ToArray();
-			return JsonWebToken.Encode(authenticated.UserId.ToString(), roles);
+			return JsonWebToken.Encode(authenticated.UserId.ToString(), authenticated.Roles.ToString().Split(", "));
 		}
 
 		private void SetHash(AuthenticationModel authentication)

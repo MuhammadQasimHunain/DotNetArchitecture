@@ -13,6 +13,8 @@ namespace Solution.Model.Models
 
 		public string Password { get; set; }
 
+		public Roles Roles { get; set; }
+
 		public Status Status { get; set; }
 
 		public string Surname { get; set; }
@@ -20,7 +22,5 @@ namespace Solution.Model.Models
 		public long UserId { get; set; }
 
 		public virtual ICollection<UserLogModel> UsersLogs { get; set; } = new HashSet<UserLogModel>();
-
-		public virtual ICollection<UserRoleModel> UsersRoles { get; set; } = new HashSet<UserRoleModel>();
 	}
 }

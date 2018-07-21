@@ -24,7 +24,7 @@ namespace Solution.Infrastructure.Database
 				select => new AuthenticatedModel
 				{
 					UserId = select.UserId,
-					Roles = select.UsersRoles.Select(userRole => userRole.Role)
+					Roles = select.Roles
 				}
 			);
 		}

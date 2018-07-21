@@ -28,14 +28,11 @@ namespace Solution.Infrastructure.Database
 				Email = "administrator@administrator.com",
 				Login = hash.Create("admin"),
 				Password = hash.Create("admin"),
+				Roles = Roles.User | Roles.Admin,
 				Status = Status.Active
 			};
 
-			var userRoleModel = new UserRoleModel { UserId = 1, Role = Roles.Admin };
-
 			context.Users.Add(userModel);
-
-			context.UsersRoles.Add(userRoleModel);
 		}
 	}
 }

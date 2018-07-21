@@ -150,13 +150,13 @@ namespace Solution.Infrastructure.Tests
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultInclude()
 		{
-			Assert.IsNotNull(Database.User.FirstOrDefault(i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.FirstOrDefault(i => i.UsersLogs));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultIncludeAsynchronous()
 		{
-			Assert.IsNotNull(Database.User.FirstOrDefaultAsync(i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.FirstOrDefaultAsync(i => i.UsersLogs));
 		}
 
 		[TestMethod]
@@ -174,13 +174,13 @@ namespace Solution.Infrastructure.Tests
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultWhereInclude()
 		{
-			Assert.IsNotNull(Database.User.FirstOrDefault(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.FirstOrDefault(x => x.UserId == 1L, i => i.UsersLogs));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultWhereIncludeAsynchronous()
 		{
-			Assert.IsNotNull(Database.User.FirstOrDefaultAsync(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.FirstOrDefaultAsync(x => x.UserId == 1L, i => i.UsersLogs));
 		}
 
 		[TestMethod]
@@ -198,13 +198,13 @@ namespace Solution.Infrastructure.Tests
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryLastOrDefaultInclude()
 		{
-			Assert.IsNotNull(Database.User.LastOrDefault(i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.LastOrDefault(i => i.UsersLogs));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryLastOrDefaultIncludeAsynchronous()
 		{
-			Assert.IsNotNull(Database.User.LastOrDefaultAsync(i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.LastOrDefaultAsync(i => i.UsersLogs));
 		}
 
 		[TestMethod]
@@ -222,13 +222,13 @@ namespace Solution.Infrastructure.Tests
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryLastOrDefaultWhereInclude()
 		{
-			Assert.IsNotNull(Database.User.LastOrDefault(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.LastOrDefault(x => x.UserId == 1L, i => i.UsersLogs));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryLastOrDefaultWhereIncludeAsynchronous()
 		{
-			Assert.IsNotNull(Database.User.LastOrDefaultAsync(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.LastOrDefaultAsync(x => x.UserId == 1L, i => i.UsersLogs));
 		}
 
 		[TestMethod]
@@ -246,13 +246,13 @@ namespace Solution.Infrastructure.Tests
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListInclude()
 		{
-			Assert.IsNotNull(Database.User.List(i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.List(i => i.UsersLogs));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListIncludeAsynchronous()
 		{
-			Assert.IsNotNull(Database.User.ListAsync(i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.ListAsync(i => i.UsersLogs));
 		}
 
 		[TestMethod]
@@ -264,7 +264,7 @@ namespace Solution.Infrastructure.Tests
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListPagedInclude()
 		{
-			Assert.IsNotNull(Database.User.List(new PagedListParameters(), i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.List(new PagedListParameters(), i => i.UsersLogs));
 		}
 
 		[TestMethod]
@@ -276,7 +276,7 @@ namespace Solution.Infrastructure.Tests
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListPagedWhereInclude()
 		{
-			Assert.IsNotNull(Database.User.List(new PagedListParameters(), x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.List(new PagedListParameters(), x => x.UserId == 1L, i => i.UsersLogs));
 		}
 
 		[TestMethod]
@@ -294,13 +294,13 @@ namespace Solution.Infrastructure.Tests
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListWhereInclude()
 		{
-			Assert.IsNotNull(Database.User.List(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.List(x => x.UserId == 1L, i => i.UsersLogs));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositoryListWhereIncludeAsynchronous()
 		{
-			Assert.IsNotNull(Database.User.ListAsync(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.ListAsync(x => x.UserId == 1L, i => i.UsersLogs));
 		}
 
 		[TestMethod]
@@ -336,13 +336,13 @@ namespace Solution.Infrastructure.Tests
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositorySingleOrDefaultWhereInclude()
 		{
-			Assert.IsNotNull(Database.User.SingleOrDefault(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.SingleOrDefault(x => x.UserId == 1L, i => i.UsersLogs));
 		}
 
 		[TestMethod]
 		public void DatabaseUnitOfWorkUserRepositorySingleOrDefaultWhereIncludeAsynchronous()
 		{
-			Assert.IsNotNull(Database.User.SingleOrDefaultAsync(x => x.UserId == 1L, i => i.UsersLogs, i => i.UsersRoles));
+			Assert.IsNotNull(Database.User.SingleOrDefaultAsync(x => x.UserId == 1L, i => i.UsersLogs));
 		}
 
 		[TestMethod]
@@ -369,19 +369,16 @@ namespace Solution.Infrastructure.Tests
 		{
 			var guid = Guid.NewGuid().ToString();
 
-			var user = new UserModel
+			return new UserModel
 			{
 				Name = $"Name {guid}",
 				Surname = $"Surname {guid}",
 				Email = $"email{guid}@email.com",
 				Login = $"login{guid}",
 				Password = $"password{guid}",
+				Roles = Roles.User | Roles.Admin,
 				Status = Status.Active
 			};
-
-			user.UsersRoles.Add(new UserRoleModel { Role = Roles.Admin });
-
-			return user;
 		}
 
 		private void SeedDatabase()

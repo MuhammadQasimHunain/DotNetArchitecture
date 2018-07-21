@@ -8,9 +8,9 @@ namespace Solution.CrossCutting.AspNetCore.Attributes
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
 	public sealed class AuthorizationAttribute : AuthorizeAttribute
 	{
-		public AuthorizationAttribute(params Roles[] roles)
+		public AuthorizationAttribute(Roles roles)
 		{
-			Roles = string.Join(", ", roles.Select(role => Enum.GetName(role.GetType(), role)));
+			Roles = roles.ToString();
 		}
 	}
 }

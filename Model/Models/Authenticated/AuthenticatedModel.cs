@@ -5,7 +5,7 @@ namespace Solution.Model.Models
 {
 	public class AuthenticatedModel
 	{
-		public IEnumerable<Roles> Roles { get; set; } = new List<Roles>();
+		public Roles Roles { get; set; }
 
 		public long UserId { get; set; }
 	}

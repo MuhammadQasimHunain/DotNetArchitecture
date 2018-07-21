@@ -4,7 +4,6 @@ namespace Solution.Infrastructure.Database
 	{
 		IUserRepository User { get; }
 		IUserLogRepository UserLog { get; }
-		IUserRoleRepository UserRole { get; }
 
 		void SaveChanges();
 	}

@@ -24,7 +24,6 @@ namespace Solution.Infrastructure.Database
 			builder.Property(x => x.UserId).IsRequired().ValueGeneratedOnAdd();
 
 			builder.HasMany(x => x.UsersLogs).WithOne(x => x.User).HasForeignKey(x => x.UserId);
-			builder.HasMany(x => x.UsersRoles).WithOne(x => x.User).HasForeignKey(x => x.UserId);
 		}
 	}
 }

@@ -38,14 +38,11 @@ namespace Solution.CrossCutting.Tests
 		[TestMethod]
 		public void MappingMap()
 		{
-			var source = new UserModel { UserId = 1 };
-			source.UsersRoles.Add(new UserRoleModel { UserId = 1, Role = Roles.Admin });
-
+			var source = new UserModel { UserId = 1, Roles = Roles.Admin };
 			var result = Mapping.Map<AuthenticatedModel>(source);
 
 			Assert.IsNotNull(result.UserId);
 			Assert.IsNotNull(result.Roles);
-			Assert.IsTrue(result.Roles.Any());
 		}
 
 		[TestMethod]

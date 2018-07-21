@@ -5,18 +5,15 @@ namespace Solution.Infrastructure.Database
 		public DatabaseUnitOfWork(
 			IUserRepository user,
 			IUserLogRepository userLog,
-			IUserRoleRepository userRole,
 			DatabaseContext context)
 		{
 			User = user;
 			UserLog = userLog;
-			UserRole = userRole;
 			Context = context;
 		}
 
 		public IUserRepository User { get; }
 		public IUserLogRepository UserLog { get; }
-		public IUserRoleRepository UserRole { get; }
 
 		private DatabaseContext Context { get; set; }
 

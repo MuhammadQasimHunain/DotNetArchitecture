@@ -66,7 +66,6 @@ namespace Solution.CrossCutting.DependencyInjection
 			Services.AddScoped<IDatabaseUnitOfWork, DatabaseUnitOfWork>();
 			Services.AddScoped<IUserLogRepository, UserLogRepository>();
 			Services.AddScoped<IUserRepository, UserRepository>();
-			Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 
 			return Services;
 		}
