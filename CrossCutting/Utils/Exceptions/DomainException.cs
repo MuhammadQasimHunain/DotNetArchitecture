@@ -15,7 +15,7 @@ namespace Solution.CrossCutting.Utils
 		{
 		}
 
-		public DomainException(string message, Exception inner) : base(message, inner)
+		public DomainException(string message, Exception exception) : base(message, exception)
 		{
 		}
 
@@ -35,6 +35,7 @@ namespace Solution.CrossCutting.Utils
 			}
 
 			info.AddValue(nameof(ResourceReferenceProperty), ResourceReferenceProperty);
+
 			base.GetObjectData(info, context);
 		}
 	}

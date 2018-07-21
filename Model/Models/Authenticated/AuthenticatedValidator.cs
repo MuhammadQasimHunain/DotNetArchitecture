@@ -1,4 +1,3 @@
-using System.Linq;
 using Solution.CrossCutting.Resources;
 using Solution.CrossCutting.Utils;
 

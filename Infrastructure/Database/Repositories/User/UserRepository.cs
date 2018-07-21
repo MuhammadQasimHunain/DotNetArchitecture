@@ -1,4 +1,3 @@
-using System.Linq;
 using Solution.Infrastructure.EntityFrameworkCore;
 using Solution.Model.Enums;
 using Solution.Model.Models;

@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
-import { ROUTES } from "./app.routes";
+import { routes } from "./app.routes";
 import { LayoutModule } from "./views/layout/layout.module";
 
 @NgModule({
@@ -10,7 +10,7 @@ import { LayoutModule } from "./views/layout/layout.module";
 	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
-		RouterModule.forRoot(ROUTES),
+		RouterModule.forRoot(routes),
 		LayoutModule
 	]
 })

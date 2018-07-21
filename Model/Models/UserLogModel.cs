@@ -11,10 +11,10 @@ namespace Solution.Model.Models
 
 		public string Message { get; set; }
 
+		public virtual UserModel User { get; set; }
+
 		public long UserId { get; set; }
 
 		public long UserLogId { get; set; }
-
-		public virtual UserModel User { get; set; }
 	}
 }

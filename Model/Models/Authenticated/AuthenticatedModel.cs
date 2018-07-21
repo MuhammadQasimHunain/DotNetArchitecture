@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Solution.Model.Enums;
 
 namespace Solution.Model.Models

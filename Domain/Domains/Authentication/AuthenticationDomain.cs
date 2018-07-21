@@ -1,5 +1,3 @@
-using System.Linq;
-using Solution.CrossCutting.Mapping;
 using Solution.CrossCutting.Security;
 using Solution.Infrastructure.Database;
 using Solution.Model.Enums;
