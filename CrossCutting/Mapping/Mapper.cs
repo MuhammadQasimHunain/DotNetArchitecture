@@ -1,5 +1,3 @@
-using System.Linq;
-using Solution.Model.Models;
 using AgileMapper = AgileObjects.AgileMapper.Mapper;
 
 namespace Solution.CrossCutting.Mapping

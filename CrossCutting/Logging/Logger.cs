@@ -1,6 +1,5 @@
 using System;
 using Serilog;
-using Serilog.Events;
 using Solution.CrossCutting.Utils;
 
 namespace Solution.CrossCutting.Logging

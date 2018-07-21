@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
-using Microsoft.Extensions.Configuration;
 using Solution.CrossCutting.AspNetCore.Middlewares;
 using Solution.CrossCutting.DependencyInjection;
 

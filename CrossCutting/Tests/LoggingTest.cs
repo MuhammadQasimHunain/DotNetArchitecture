@@ -1,7 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solution.CrossCutting.DependencyInjection;
 using Solution.CrossCutting.Logging;
-using Solution.CrossCutting.Utils;
 
 namespace Solution.CrossCutting.Tests
 {

@@ -1,4 +1,3 @@
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solution.CrossCutting.DependencyInjection;
 using Solution.CrossCutting.Mapping;
