@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Solution.CrossCutting.Utils;
 
-namespace Solution.Infrastructure.EntityFrameworkCore
+namespace Solution.CrossCutting.EntityFrameworkCore
 {
 	public class EntityFrameworkCoreRepository<T> : IRelationalRepository<T> where T : class
 	{

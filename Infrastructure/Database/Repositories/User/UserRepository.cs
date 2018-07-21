@@ -1,4 +1,4 @@
-using Solution.Infrastructure.EntityFrameworkCore;
+using Solution.CrossCutting.EntityFrameworkCore;
 using Solution.Model.Enums;
 using Solution.Model.Models;
 
