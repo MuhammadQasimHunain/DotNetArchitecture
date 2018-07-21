@@ -1,6 +1,6 @@
-﻿import { NgModule } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { SharedModule } from "../../shared/shared.module";
+import { SharedModule } from "../shared/shared.module";
 import { FooterComponent } from "./footer/footer.component";
 import { HeaderComponent } from "./header/header.component";
 import { LayoutComponent } from "./layout.component";
@@ -9,11 +9,11 @@ import { NavComponent } from "./nav/nav.component";
 
 @NgModule({
 	declarations: [
-		LayoutComponent,
+		FooterComponent,
 		HeaderComponent,
-		NavComponent,
+		LayoutComponent,
 		MainComponent,
-		FooterComponent
+		NavComponent
 	],
 	exports: [LayoutComponent],
 	imports: [RouterModule, SharedModule]

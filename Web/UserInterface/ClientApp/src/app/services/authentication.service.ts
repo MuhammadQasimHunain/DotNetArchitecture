@@ -13,11 +13,13 @@ export class AuthenticationService {
 		private readonly router: Router,
 		private readonly tokenService: TokenService) { }
 
-	authenticate(authentication: AuthenticationModel) {
-		this.http.post(`${this.service}/Authenticate`, authentication, { responseType: "text" }).subscribe((response: any) => {
-			this.tokenService.set(response);
-			this.router.navigate(["/home"]);
-		});
+	authenticate(authentication: AuthenticationModel): void {
+		this.http
+			.post(`${this.service}/Authenticate`, authentication, { responseType: "text" })
+			.subscribe((token: string) => {
+				this.tokenService.set(token);
+				this.router.navigate(["/home"]);
+			});
 	}
 
 	isAuthenticated(): boolean {

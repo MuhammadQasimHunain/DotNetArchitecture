@@ -4,11 +4,11 @@ import { Injectable } from "@angular/core";
 export class TokenService {
 	private token = "token";
 
-	clear() {
+	clear(): void {
 		sessionStorage.removeItem(this.token);
 	}
 
-	exists() {
+	exists(): boolean {
 		return this.get() !== null;
 	}
 
@@ -16,7 +16,7 @@ export class TokenService {
 		return sessionStorage.getItem(this.token);
 	}
 
-	set(token: string) {
+	set(token: string): void {
 		sessionStorage.setItem(this.token, token);
 	}
 }

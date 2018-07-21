@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { routes } from "./app.routes";
-import { LayoutModule } from "./views/layout/layout.module";
+import { LayoutModule } from "./layout/layout.module";
 
 @NgModule({
 	bootstrap: [AppComponent],

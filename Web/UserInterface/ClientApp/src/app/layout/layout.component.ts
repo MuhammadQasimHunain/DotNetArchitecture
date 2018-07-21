@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
-import { AuthenticationService } from "../../services/authentication.service";
+import { AuthenticationService } from "../services/authentication.service";
 
 @Component({ selector: "app-layout", templateUrl: "./layout.component.html" })
 export class LayoutComponent {
