@@ -25,6 +25,7 @@ namespace Solution.CrossCutting.Utils
             }
 
             var memberInfo = value.GetType().GetMember(value.ToString());
+
             var attributes = memberInfo[0].GetCustomAttributes(typeof(T), false);
 
             return (T)attributes[0];

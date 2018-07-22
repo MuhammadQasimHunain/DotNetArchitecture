@@ -8,7 +8,9 @@ namespace Solution.CrossCutting.Utils
         public static DateTime NextDateTime(this DateTime dateTime, DayOfWeek[] days, TimeSpan[] times)
         {
             times = times.OrderBy(x => x.Hours).ToArray();
+
             var nextTimes = times.Where(x => x.Hours > dateTime.TimeOfDay.Hours).ToArray();
+
             return (nextTimes.Length > 0) ? (dateTime.Date + nextTimes[0]) : (dateTime.NextDateTime(days).Date + times[0]);
         }
 

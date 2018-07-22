@@ -20,6 +20,7 @@ namespace Solution.CrossCutting.Utils
             }
 
             sb.Append(" File: '").Append(stackFrame.GetMethod().DeclaringType).Append("'");
+
             sb.Append(" Line: '").Append(stackFrame.GetFileLineNumber()).Append("'");
 
             return sb.ToString();
