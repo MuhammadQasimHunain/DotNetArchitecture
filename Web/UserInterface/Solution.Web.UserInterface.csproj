@@ -1,47 +1,47 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-	<PropertyGroup>
-		<BuildServerSideRenderer>false</BuildServerSideRenderer>
-		<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-		<IsPackable>false</IsPackable>
-		<SpaRoot>ClientApp\</SpaRoot>
-		<TargetFramework>netcoreapp2.1</TargetFramework>
-		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.App" />
-		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.4" />
-		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.4" />
-	</ItemGroup>
-	<ItemGroup>
-		<Content Remove="$(SpaRoot)**" />
-		<None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\..\Application\Applications\Solution.Application.Applications.csproj" />
-		<ProjectReference Include="..\..\CrossCutting\AspNetCore\Solution.CrossCutting.AspNetCore.csproj" />
-		<ProjectReference Include="..\..\CrossCutting\DependencyInjection\Solution.CrossCutting.DependencyInjection.csproj" />
-		<ProjectReference Include="..\..\CrossCutting\Security\Solution.CrossCutting.Security.csproj" />
-		<ProjectReference Include="..\..\CrossCutting\Utils\Solution.CrossCutting.Utils.csproj" />
-		<ProjectReference Include="..\..\Model\Enums\Solution.Model.Enums.csproj" />
-		<ProjectReference Include="..\..\Model\Models\Solution.Model.Models.csproj" />
-	</ItemGroup>
-	<Target Name="EnsureNode" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
-		<Message Importance="high" Text="Restoring dependencies using 'npm'..." />
-		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run restore" />
-	</Target>
-	<Target Name="Publish" AfterTargets="ComputeFilesToPublish">
-		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run restore" />
-		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run development" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == '' " />
-		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run staging" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == 'Staging' " />
-		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run production" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == 'Production' " />
-		<ItemGroup>
-			<DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
-			<DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
-			<ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-				<RelativePath>%(DistFiles.Identity)</RelativePath>
-				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-			</ResolvedFileToPublish>
-		</ItemGroup>
-	</Target>
+    <PropertyGroup>
+        <BuildServerSideRenderer>false</BuildServerSideRenderer>
+        <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+        <IsPackable>false</IsPackable>
+        <SpaRoot>ClientApp\</SpaRoot>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+        <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.4" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.4" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Remove="$(SpaRoot)**" />
+        <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Application\Applications\Solution.Application.Applications.csproj" />
+        <ProjectReference Include="..\..\CrossCutting\AspNetCore\Solution.CrossCutting.AspNetCore.csproj" />
+        <ProjectReference Include="..\..\CrossCutting\DependencyInjection\Solution.CrossCutting.DependencyInjection.csproj" />
+        <ProjectReference Include="..\..\CrossCutting\Security\Solution.CrossCutting.Security.csproj" />
+        <ProjectReference Include="..\..\CrossCutting\Utils\Solution.CrossCutting.Utils.csproj" />
+        <ProjectReference Include="..\..\Model\Enums\Solution.Model.Enums.csproj" />
+        <ProjectReference Include="..\..\Model\Models\Solution.Model.Models.csproj" />
+    </ItemGroup>
+    <Target Name="EnsureNode" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+        <Message Importance="high" Text="Restoring dependencies using 'npm'..." />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run restore" />
+    </Target>
+    <Target Name="Publish" AfterTargets="ComputeFilesToPublish">
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run restore" />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run development" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == '' " />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run staging" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == 'Staging' " />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run production" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == 'Production' " />
+        <ItemGroup>
+            <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+            <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+            <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+                <RelativePath>%(DistFiles.Identity)</RelativePath>
+                <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+            </ResolvedFileToPublish>
+        </ItemGroup>
+    </Target>
 </Project>

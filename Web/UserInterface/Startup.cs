@@ -5,37 +5,37 @@ using Solution.CrossCutting.AspNetCore.Extensions;
 
 namespace Solution.Web.UserInterface
 {
-	public class Startup
-	{
-		public Startup(IConfiguration configuration)
-		{
-			Configuration = configuration;
-		}
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
-		private IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
-		public void Configure(IApplicationBuilder application)
-		{
-			application.UseExceptionCustom();
-			application.UseAuthentication();
-			application.UseCorsCustom();
-			application.UseHstsCustom();
-			application.UseHttpsRedirection();
-			application.UseStaticFiles();
-			application.UseSpaStaticFiles();
-			application.UseResponseCaching();
-			application.UseMvcWithDefaultRoute();
-			application.UseSpaCustom();
-		}
+        public void Configure(IApplicationBuilder application)
+        {
+            application.UseExceptionCustom();
+            application.UseAuthentication();
+            application.UseCorsCustom();
+            application.UseHstsCustom();
+            application.UseHttpsRedirection();
+            application.UseStaticFiles();
+            application.UseSpaStaticFiles();
+            application.UseResponseCaching();
+            application.UseMvcWithDefaultRoute();
+            application.UseSpaCustom();
+        }
 
-		public void ConfigureServices(IServiceCollection services)
-		{
-			services.AddDependencyInjectionCustom(Configuration);
-			services.AddAuthenticationCustom();
-			services.AddCors();
-			services.AddResponseCaching();
-			services.AddMvcCustom();
-			services.AddSpaStaticFilesCustom();
-		}
-	}
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDependencyInjectionCustom(Configuration);
+            services.AddAuthenticationCustom();
+            services.AddCors();
+            services.AddResponseCaching();
+            services.AddMvcCustom();
+            services.AddSpaStaticFilesCustom();
+        }
+    }
 }
