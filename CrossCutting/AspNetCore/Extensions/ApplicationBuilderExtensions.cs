@@ -12,7 +12,7 @@ namespace Solution.CrossCutting.AspNetCore.Extensions
 
         public static void UseCorsCustom(this IApplicationBuilder application)
         {
-            application.UseCors(cors => cors.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            application.UseCors(cors => cors.AllowAnyOrigin().AllowCredentials().AllowAnyHeader().AllowAnyMethod());
         }
 
         public static void UseExceptionCustom(this IApplicationBuilder application)
