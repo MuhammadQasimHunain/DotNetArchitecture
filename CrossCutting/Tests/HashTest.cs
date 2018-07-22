@@ -5,37 +5,37 @@ using Solution.CrossCutting.Security;
 
 namespace Solution.CrossCutting.Tests
 {
-	[TestClass]
-	public class HashTest
-	{
-		public HashTest()
-		{
-			DependencyInjector.RegisterServices();
-			Hash = DependencyInjector.GetService<IHash>();
-		}
+    [TestClass]
+    public class HashTest
+    {
+        public HashTest()
+        {
+            DependencyInjector.RegisterServices();
+            Hash = DependencyInjector.GetService<IHash>();
+        }
 
-		private IHash Hash { get; }
+        private IHash Hash { get; }
 
-		[TestMethod]
-		public void HashCreate()
-		{
-			var hash = Hash.Create(nameof(Hash));
+        [TestMethod]
+        public void HashCreate()
+        {
+            var hash = Hash.Create(nameof(Hash));
 
-			Assert.IsNotNull(hash);
-		}
+            Assert.IsNotNull(hash);
+        }
 
-		[TestMethod]
-		[ExpectedException(typeof(ArgumentNullException))]
-		public void HashCreateEmpty()
-		{
-			Hash.Create(string.Empty);
-		}
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void HashCreateEmpty()
+        {
+            Hash.Create(string.Empty);
+        }
 
-		[TestMethod]
-		[ExpectedException(typeof(ArgumentNullException))]
-		public void HashCreateNull()
-		{
-			Hash.Create(null);
-		}
-	}
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void HashCreateNull()
+        {
+            Hash.Create(null);
+        }
+    }
 }

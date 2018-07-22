@@ -3,23 +3,23 @@ using Solution.Model.Models;
 
 namespace Solution.Application.Applications
 {
-	public sealed class AuthenticationApplication : BaseApplication, IAuthenticationApplication
-	{
-		public AuthenticationApplication(IAuthenticationDomain authentication)
-		{
-			Authentication = authentication;
-		}
+    public sealed class AuthenticationApplication : BaseApplication, IAuthenticationApplication
+    {
+        public AuthenticationApplication(IAuthenticationDomain authentication)
+        {
+            Authentication = authentication;
+        }
 
-		private IAuthenticationDomain Authentication { get; }
+        private IAuthenticationDomain Authentication { get; }
 
-		public string Authenticate(AuthenticationModel authentication)
-		{
-			return Authentication.Authenticate(authentication);
-		}
+        public string Authenticate(AuthenticationModel authentication)
+        {
+            return Authentication.Authenticate(authentication);
+        }
 
-		public void Logout(long userId)
-		{
-			Authentication.Logout(userId);
-		}
-	}
+        public void Logout(long userId)
+        {
+            Authentication.Logout(userId);
+        }
+    }
 }

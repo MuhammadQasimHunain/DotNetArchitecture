@@ -1,11 +1,11 @@
 namespace Solution.Infrastructure.Database
 {
-	public interface IDatabaseUnitOfWork
-	{
-		IUserRepository User { get; }
+    public interface IDatabaseUnitOfWork
+    {
+        IUserRepository User { get; }
 
-		IUserLogRepository UserLog { get; }
+        IUserLogRepository UserLog { get; }
 
-		void SaveChanges();
-	}
+        void SaveChanges();
+    }
 }

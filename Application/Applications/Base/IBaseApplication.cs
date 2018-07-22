@@ -1,6 +1,6 @@
 namespace Solution.Application.Applications
 {
-	public interface IBaseApplication
-	{
-	}
+    public interface IBaseApplication
+    {
+    }
 }

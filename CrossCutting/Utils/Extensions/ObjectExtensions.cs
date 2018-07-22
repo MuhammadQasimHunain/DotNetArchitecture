@@ -4,23 +4,23 @@ using Solution.CrossCutting.Utils;
 
 namespace System
 {
-	public static class ObjectExtensions
-	{
-		public static byte[] ToBytes(this object obj)
-		{
-			if (obj == null)
-			{
-				return default;
-			}
+    public static class ObjectExtensions
+    {
+        public static byte[] ToBytes(this object obj)
+        {
+            if (obj == null)
+            {
+                return default;
+            }
 
-			using (var memoryStream = new MemoryStream())
-			{
-				var binaryFormatter = new BinaryFormatter();
+            using (var memoryStream = new MemoryStream())
+            {
+                var binaryFormatter = new BinaryFormatter();
 
-				binaryFormatter.Serialize(memoryStream, obj);
+                binaryFormatter.Serialize(memoryStream, obj);
 
-				return memoryStream.ToArray().Compress();
-			}
-		}
-	}
+                return memoryStream.ToArray().Compress();
+            }
+        }
+    }
 }

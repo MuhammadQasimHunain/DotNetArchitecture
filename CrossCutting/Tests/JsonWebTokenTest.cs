@@ -4,32 +4,32 @@ using Solution.CrossCutting.Security;
 
 namespace Solution.CrossCutting.Tests
 {
-	[TestClass]
-	public class JsonWebTokenTest
-	{
-		public JsonWebTokenTest()
-		{
-			DependencyInjector.RegisterServices();
-			JsonWebToken = DependencyInjector.GetService<IJsonWebToken>();
-		}
+    [TestClass]
+    public class JsonWebTokenTest
+    {
+        public JsonWebTokenTest()
+        {
+            DependencyInjector.RegisterServices();
+            JsonWebToken = DependencyInjector.GetService<IJsonWebToken>();
+        }
 
-		private IJsonWebToken JsonWebToken { get; }
+        private IJsonWebToken JsonWebToken { get; }
 
-		[TestMethod]
-		public void JsonWebTokenEncodeDecode()
-		{
-			var encoded = JsonWebToken.Encode("sub", new[] { "admin" });
-			var decoded = JsonWebToken.Decode(encoded);
+        [TestMethod]
+        public void JsonWebTokenEncodeDecode()
+        {
+            var encoded = JsonWebToken.Encode("sub", new[] { "admin" });
+            var decoded = JsonWebToken.Decode(encoded);
 
-			Assert.IsNotNull(decoded);
-		}
+            Assert.IsNotNull(decoded);
+        }
 
-		[TestMethod]
-		public void JsonWebTokenGetTokenValidationParameters()
-		{
-			var parameters = JsonWebToken.TokenValidationParameters;
+        [TestMethod]
+        public void JsonWebTokenGetTokenValidationParameters()
+        {
+            var parameters = JsonWebToken.TokenValidationParameters;
 
-			Assert.IsNotNull(parameters);
-		}
-	}
+            Assert.IsNotNull(parameters);
+        }
+    }
 }

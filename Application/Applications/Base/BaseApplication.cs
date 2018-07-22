@@ -1,6 +1,6 @@
 namespace Solution.Application.Applications
 {
-	public abstract class BaseApplication : IBaseApplication
-	{
-	}
+    public abstract class BaseApplication : IBaseApplication
+    {
+    }
 }

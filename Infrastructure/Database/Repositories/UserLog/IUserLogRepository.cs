@@ -3,7 +3,7 @@ using Solution.Model.Models;
 
 namespace Solution.Infrastructure.Database
 {
-	public interface IUserLogRepository : IRelationalRepository<UserLogModel>
-	{
-	}
+    public interface IUserLogRepository : IRelationalRepository<UserLogModel>
+    {
+    }
 }

@@ -9,41 +9,41 @@ using Solution.CrossCutting.Security;
 
 namespace Solution.CrossCutting.AspNetCore.Extensions
 {
-	public static class ServiceCollectionExtensions
-	{
-		public static void AddAuthenticationCustom(this IServiceCollection services)
-		{
-			var jsonWebToken = DependencyInjector.GetService<IJsonWebToken>();
+    public static class ServiceCollectionExtensions
+    {
+        public static void AddAuthenticationCustom(this IServiceCollection services)
+        {
+            var jsonWebToken = DependencyInjector.GetService<IJsonWebToken>();
 
-			void JwtBearer(JwtBearerOptions jwtBearer)
-			{
-				jwtBearer.RequireHttpsMetadata = false;
-				jwtBearer.SaveToken = true;
-				jwtBearer.TokenValidationParameters = jsonWebToken.TokenValidationParameters;
-			}
+            void JwtBearer(JwtBearerOptions jwtBearer)
+            {
+                jwtBearer.RequireHttpsMetadata = false;
+                jwtBearer.SaveToken = true;
+                jwtBearer.TokenValidationParameters = jsonWebToken.TokenValidationParameters;
+            }
 
-			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(JwtBearer);
-		}
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(JwtBearer);
+        }
 
-		public static void AddMvcCustom(this IServiceCollection services)
-		{
-			void Mvc(MvcOptions mvc)
-			{
-				var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-				mvc.Filters.Add(new AuthorizeFilter(policy));
-			}
+        public static void AddMvcCustom(this IServiceCollection services)
+        {
+            void Mvc(MvcOptions mvc)
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                mvc.Filters.Add(new AuthorizeFilter(policy));
+            }
 
-			void Json(MvcJsonOptions json)
-			{
-				json.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-			}
+            void Json(MvcJsonOptions json)
+            {
+                json.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            }
 
-			services.AddMvc(Mvc).AddJsonOptions(Json);
-		}
+            services.AddMvc(Mvc).AddJsonOptions(Json);
+        }
 
-		public static void AddSpaStaticFilesCustom(this IServiceCollection services)
-		{
-			services.AddSpaStaticFiles(spa => spa.RootPath = "ClientApp/dist");
-		}
-	}
+        public static void AddSpaStaticFilesCustom(this IServiceCollection services)
+        {
+            services.AddSpaStaticFiles(spa => spa.RootPath = "ClientApp/dist");
+        }
+    }
 }

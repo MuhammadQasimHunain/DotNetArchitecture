@@ -1,6 +1,6 @@
 namespace Solution.Domain.Domains
 {
-	public abstract class BaseDomain : IBaseDomain
-	{
-	}
+    public abstract class BaseDomain : IBaseDomain
+    {
+    }
 }

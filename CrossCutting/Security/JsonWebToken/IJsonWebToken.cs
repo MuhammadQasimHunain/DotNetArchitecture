@@ -3,12 +3,12 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Solution.CrossCutting.Security
 {
-	public interface IJsonWebToken
-	{
-		TokenValidationParameters TokenValidationParameters { get; }
+    public interface IJsonWebToken
+    {
+        TokenValidationParameters TokenValidationParameters { get; }
 
-		Dictionary<string, object> Decode(string token);
+        Dictionary<string, object> Decode(string token);
 
-		string Encode(string sub, string[] roles);
-	}
+        string Encode(string sub, string[] roles);
+    }
 }

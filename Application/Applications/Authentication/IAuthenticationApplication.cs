@@ -2,10 +2,10 @@ using Solution.Model.Models;
 
 namespace Solution.Application.Applications
 {
-	public interface IAuthenticationApplication : IBaseApplication
-	{
-		string Authenticate(AuthenticationModel authentication);
+    public interface IAuthenticationApplication : IBaseApplication
+    {
+        string Authenticate(AuthenticationModel authentication);
 
-		void Logout(long userId);
-	}
+        void Logout(long userId);
+    }
 }
