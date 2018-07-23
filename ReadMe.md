@@ -39,7 +39,7 @@ Solution to apply and share new knowledge and technologies and to serve as archi
 
 **Web:** This layer contains the user interface, responsible for interaction with the user to obtain and display data.
 
-**Application:** This layer is the main entry point of the application, which can be ASP.NET Core, ASP.NET MVC, ASP.NET Web API, Console, Windows Service, among others.
+**Application:** This layer is the main entry point of the application.
 
 **Domain:** This layer contains the requirements and the business logic, is the core of the application.
 
