@@ -1408,7 +1408,7 @@
         <Rule Id="S3215" Action="Error" />
         <Rule Id="S3217" Action="Error" />
         <Rule Id="S3218" Action="Error" />
-        <Rule Id="S3220" Action="Error" />
+        <Rule Id="S3220" Action="None" />
         <Rule Id="S3234" Action="Error" />
         <Rule Id="S3235" Action="Error" />
         <Rule Id="S3236" Action="Error" />
