@@ -119,6 +119,16 @@ namespace Solution.CrossCutting.EntityFrameworkCore
             return QueryableWhereInclude(where, include).FirstOrDefault();
         }
 
+        public TResult FirstOrDefault<TResult>(Expression<Func<T, bool>> where)
+        {
+            return QueryableWhere(where).Project<T, TResult>().FirstOrDefault();
+        }
+
+        public TResult FirstOrDefault<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
+        {
+            return QueryableWhereSelect(where, select).FirstOrDefault();
+        }
+
         public Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> where)
         {
             return QueryableWhere(where).FirstOrDefaultAsync();
@@ -134,19 +144,9 @@ namespace Solution.CrossCutting.EntityFrameworkCore
             return QueryableWhereInclude(where, include).FirstOrDefaultAsync();
         }
 
-        public TResult FirstOrDefault<TResult>(Expression<Func<T, bool>> where)
-        {
-            return QueryableWhere(where).Project<T, TResult>().FirstOrDefault();
-        }
-
         public Task<TResult> FirstOrDefaultAsync<TResult>(Expression<Func<T, bool>> where)
         {
             return QueryableWhere(where).Project<T, TResult>().FirstOrDefaultAsync();
-        }
-
-        public TResult FirstOrDefault<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
-        {
-            return QueryableWhereSelect(where, select).FirstOrDefault();
         }
 
         public Task<TResult> FirstOrDefaultAsync<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
@@ -164,6 +164,16 @@ namespace Solution.CrossCutting.EntityFrameworkCore
             return QueryableWhereInclude(where, include).LastOrDefault();
         }
 
+        public TResult LastOrDefault<TResult>(Expression<Func<T, bool>> where)
+        {
+            return QueryableWhere(where).Project<T, TResult>().LastOrDefault();
+        }
+
+        public TResult LastOrDefault<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
+        {
+            return QueryableWhereSelect(where, select).LastOrDefault();
+        }
+
         public Task<T> LastOrDefaultAsync(params Expression<Func<T, object>>[] include)
         {
             return QueryableInclude(include).LastOrDefaultAsync();
@@ -174,19 +184,9 @@ namespace Solution.CrossCutting.EntityFrameworkCore
             return QueryableWhereInclude(where, include).LastOrDefaultAsync();
         }
 
-        public TResult LastOrDefault<TResult>(Expression<Func<T, bool>> where)
-        {
-            return QueryableWhere(where).Project<T, TResult>().LastOrDefault();
-        }
-
         public Task<TResult> LastOrDefaultAsync<TResult>(Expression<Func<T, bool>> where)
         {
             return QueryableWhere(where).Project<T, TResult>().LastOrDefaultAsync();
-        }
-
-        public TResult LastOrDefault<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
-        {
-            return QueryableWhereSelect(where, select).LastOrDefault();
         }
 
         public Task<TResult> LastOrDefaultAsync<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
@@ -264,6 +264,16 @@ namespace Solution.CrossCutting.EntityFrameworkCore
             return QueryableWhereInclude(where, include).SingleOrDefault();
         }
 
+        public TResult SingleOrDefault<TResult>(Expression<Func<T, bool>> where)
+        {
+            return QueryableWhere(where).Project<T, TResult>().SingleOrDefault();
+        }
+
+        public TResult SingleOrDefault<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
+        {
+            return QueryableWhereSelect(where, select).SingleOrDefault();
+        }
+
         public Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> where)
         {
             return QueryableWhere(where).SingleOrDefaultAsync();
@@ -274,19 +284,9 @@ namespace Solution.CrossCutting.EntityFrameworkCore
             return QueryableWhereInclude(where, include).SingleOrDefaultAsync();
         }
 
-        public TResult SingleOrDefault<TResult>(Expression<Func<T, bool>> where)
-        {
-            return QueryableWhere(where).Project<T, TResult>().SingleOrDefault();
-        }
-
         public Task<TResult> SingleOrDefaultAsync<TResult>(Expression<Func<T, bool>> where)
         {
             return QueryableWhere(where).Project<T, TResult>().SingleOrDefaultAsync();
-        }
-
-        public TResult SingleOrDefault<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
-        {
-            return QueryableWhereSelect(where, select).SingleOrDefault();
         }
 
         public Task<TResult> SingleOrDefaultAsync<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
