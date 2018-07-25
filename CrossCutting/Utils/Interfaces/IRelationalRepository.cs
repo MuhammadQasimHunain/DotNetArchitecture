@@ -18,9 +18,13 @@ namespace Solution.CrossCutting.Utils
 
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include);
 
-        TResult FirstOrDefaultResult<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select);
+        TResult FirstOrDefault<TResult>(Expression<Func<T, bool>> where);
 
-        Task<TResult> FirstOrDefaultResultAsync<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select);
+        Task<TResult> FirstOrDefaultAsync<TResult>(Expression<Func<T, bool>> where);
+
+        TResult FirstOrDefault<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select);
+
+        Task<TResult> FirstOrDefaultAsync<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select);
 
         T LastOrDefault(params Expression<Func<T, object>>[] include);
 
@@ -30,9 +34,13 @@ namespace Solution.CrossCutting.Utils
 
         Task<T> LastOrDefaultAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include);
 
-        TResult LastOrDefaultResult<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select);
+        TResult LastOrDefault<TResult>(Expression<Func<T, bool>> where);
 
-        Task<TResult> LastOrDefaultResultAsync<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select);
+        Task<TResult> LastOrDefaultAsync<TResult>(Expression<Func<T, bool>> where);
+
+        TResult LastOrDefault<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select);
+
+        Task<TResult> LastOrDefaultAsync<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select);
 
         IEnumerable<T> List(params Expression<Func<T, object>>[] include);
 
@@ -50,8 +58,12 @@ namespace Solution.CrossCutting.Utils
 
         Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include);
 
-        TResult SingleOrDefaultResult<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select);
+        TResult SingleOrDefault<TResult>(Expression<Func<T, bool>> where);
 
-        Task<TResult> SingleOrDefaultResultAsync<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select);
+        Task<TResult> SingleOrDefaultAsync<TResult>(Expression<Func<T, bool>> where);
+
+        TResult SingleOrDefault<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select);
+
+        Task<TResult> SingleOrDefaultAsync<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select);
     }
 }

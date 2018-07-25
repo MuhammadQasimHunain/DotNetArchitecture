@@ -7,6 +7,7 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.1" />
 	</ItemGroup>
 	<ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\Mapping\Solution.CrossCutting.Mapping.csproj" />
 		<ProjectReference Include="..\..\CrossCutting\Utils\Solution.CrossCutting.Utils.csproj" />
 	</ItemGroup>
 </Project>

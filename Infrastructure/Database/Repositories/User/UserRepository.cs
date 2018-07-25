@@ -12,19 +12,14 @@ namespace Solution.Infrastructure.Database
 
         public AuthenticatedModel Authenticate(AuthenticationModel authentication)
         {
-            return SingleOrDefaultResult
+            return SingleOrDefault<AuthenticatedModel>
             (
                 where =>
                 (
                     where.Login.Equals(authentication.Login)
                     && where.Password.Equals(authentication.Password)
                     && where.Status == Status.Active
-                ),
-                select => new AuthenticatedModel
-                {
-                    UserId = select.UserId,
-                    Roles = select.Roles
-                }
+                )
             );
         }
     }
