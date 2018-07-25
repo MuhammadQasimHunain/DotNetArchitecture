@@ -96,12 +96,12 @@ namespace Solution.CrossCutting.EntityFrameworkCore
 
         public async Task DeleteAsync(object key)
         {
-            await Task.Run(() => Delete(key));
+            await Task.Run(() => Delete(key)).ConfigureAwait(false);
         }
 
         public async Task DeleteAsync(Expression<Func<T, bool>> where)
         {
-            await Task.Run(() => Delete(where));
+            await Task.Run(() => Delete(where)).ConfigureAwait(false);
         }
 
         public T FirstOrDefault(Expression<Func<T, bool>> where)
@@ -301,7 +301,7 @@ namespace Solution.CrossCutting.EntityFrameworkCore
 
         public async Task UpdateAsync(T item, object key)
         {
-            await Task.Run(() => Update(item, key));
+            await Task.Run(() => Update(item, key)).ConfigureAwait(false);
         }
 
         private static IQueryable<T> Include(IQueryable<T> queryable, Expression<Func<T, object>>[] properties)
