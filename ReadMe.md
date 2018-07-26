@@ -14,7 +14,7 @@ Solution to apply and share new knowledge and technologies and to serve as archi
 * C# 7.3
 * SPA (Single Page Application)
 * Angular 6.1.0
-* Typescript 2.7.2
+* Typescript 2.9.2
 * HTML5
 * CSS3
 * SASS (Syntactically Awesome Style Sheets)
