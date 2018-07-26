@@ -14,12 +14,9 @@ namespace Solution.Infrastructure.Database
         {
             return SingleOrDefault<AuthenticatedModel>
             (
-                where =>
-                (
-                    where.Login.Equals(authentication.Login)
-                    && where.Password.Equals(authentication.Password)
-                    && where.Status == Status.Active
-                )
+                user => user.Login.Equals(authentication.Login)
+                && user.Password.Equals(authentication.Password)
+                && user.Status == Status.Active
             );
         }
     }
