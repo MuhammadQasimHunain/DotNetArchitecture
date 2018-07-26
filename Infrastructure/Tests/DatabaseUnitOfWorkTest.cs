@@ -110,21 +110,21 @@ namespace Solution.Infrastructure.Tests
         [TestMethod]
         public void DatabaseUnitOfWorkUserRepositoryDelete()
         {
-            Database.User.Delete(100L);
+            Database.User.Delete(70L);
             Database.SaveChanges();
         }
 
         [TestMethod]
         public void DatabaseUnitOfWorkUserRepositoryDeleteAsynchronous()
         {
-            Database.User.DeleteAsync(100L);
+            Database.User.DeleteAsync(80L);
             Database.SaveChanges();
         }
 
         [TestMethod]
         public void DatabaseUnitOfWorkUserRepositoryDeleteWhere()
         {
-            Database.User.Delete(x => x.UserId == 100L);
+            Database.User.Delete(x => x.UserId == 90L);
             Database.SaveChanges();
         }
 
@@ -157,6 +157,18 @@ namespace Solution.Infrastructure.Tests
         public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultIncludeAsynchronous()
         {
             Assert.IsNotNull(Database.User.FirstOrDefaultAsync(i => i.UsersLogs));
+        }
+
+        [TestMethod]
+        public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultResult()
+        {
+            Assert.IsNotNull(Database.User.FirstOrDefault<AuthenticatedModel>(x => x.UserId == 1L));
+        }
+
+        [TestMethod]
+        public void DatabaseUnitOfWorkUserRepositoryFirstOrDefaultResultAsynchronous()
+        {
+            Assert.IsNotNull(Database.User.FirstOrDefaultAsync<AuthenticatedModel>(x => x.UserId == 1L));
         }
 
         [TestMethod]
@@ -319,6 +331,18 @@ namespace Solution.Infrastructure.Tests
         public void DatabaseUnitOfWorkUserRepositorySelectAsynchronous()
         {
             Assert.IsNotNull(Database.User.SelectAsync(1L).Result);
+        }
+
+        [TestMethod]
+        public void DatabaseUnitOfWorkUserRepositorySingleOrDefaultResult()
+        {
+            Assert.IsNotNull(Database.User.SingleOrDefault<AuthenticatedModel>(x => x.UserId == 1L));
+        }
+
+        [TestMethod]
+        public void DatabaseUnitOfWorkUserRepositorySingleOrDefaultResultAsynchronous()
+        {
+            Assert.IsNotNull(Database.User.SingleOrDefaultAsync<AuthenticatedModel>(x => x.UserId == 1L));
         }
 
         [TestMethod]

@@ -14,8 +14,7 @@ namespace Solution.CrossCutting.EntityFrameworkCore
         protected EntityFrameworkCoreRepository(DbContext context)
         {
             Context = context;
-            Context.ChangeTracker.AutoDetectChangesEnabled = false;
-            Context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            DisableAutoDetectChangesTracking();
         }
 
         public IQueryable<T> Queryable => Set.AsNoTracking();
@@ -91,7 +90,9 @@ namespace Solution.CrossCutting.EntityFrameworkCore
 
         public void Delete(Expression<Func<T, bool>> where)
         {
-            Set.RemoveRange(List(where));
+            EnableAutoDetectChangesTracking();
+            Set.RemoveRange(Set.Where(where));
+            DisableAutoDetectChangesTracking();
         }
 
         public async Task DeleteAsync(object key)
@@ -308,6 +309,18 @@ namespace Solution.CrossCutting.EntityFrameworkCore
         {
             properties?.ToList().ForEach(property => queryable = queryable.Include(property));
             return queryable;
+        }
+
+        private void DisableAutoDetectChangesTracking()
+        {
+            Context.ChangeTracker.AutoDetectChangesEnabled = false;
+            Context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        }
+
+        private void EnableAutoDetectChangesTracking()
+        {
+            Context.ChangeTracker.AutoDetectChangesEnabled = true;
+            Context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
         }
 
         private IQueryable<T> QueryableInclude(Expression<Func<T, object>>[] include)
