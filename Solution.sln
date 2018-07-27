@@ -57,6 +57,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solution.CrossCutting.AspNe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solution.CrossCutting.EntityFrameworkCore", "CrossCutting\EntityFrameworkCore\Solution.CrossCutting.EntityFrameworkCore.csproj", "{F3B8C546-D97F-410A-8EF5-A7C13FAED749}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solution.CrossCutting.MongoDB", "CrossCutting\MongoDB\Solution.CrossCutting.MongoDB.csproj", "{012BC3CD-DD89-427C-8E92-E58A2937F212}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{F3B8C546-D97F-410A-8EF5-A7C13FAED749}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3B8C546-D97F-410A-8EF5-A7C13FAED749}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3B8C546-D97F-410A-8EF5-A7C13FAED749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{012BC3CD-DD89-427C-8E92-E58A2937F212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{012BC3CD-DD89-427C-8E92-E58A2937F212}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{012BC3CD-DD89-427C-8E92-E58A2937F212}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{012BC3CD-DD89-427C-8E92-E58A2937F212}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,9 +164,10 @@ Global
 		{E1A5EFBB-3797-4EED-B78B-3C922D9E4CBB} = {F2950CEC-A6D7-48DE-9654-E30B30FAE3A6}
 		{D8F375E2-DCE7-4CC3-BFE0-0E9D2B73CA5E} = {5CA83FAB-7862-450F-BFBF-19E10F7A701D}
 		{F3B8C546-D97F-410A-8EF5-A7C13FAED749} = {5CA83FAB-7862-450F-BFBF-19E10F7A701D}
+		{012BC3CD-DD89-427C-8E92-E58A2937F212} = {5CA83FAB-7862-450F-BFBF-19E10F7A701D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		        SolutionGuid = {241770AD-DA85-46CF-8A27-1DBD7011CCDB}
 		SolutionGuid = {49BEF3B0-830A-489E-B8B3-3E1D96174C8C}
+		        SolutionGuid = {241770AD-DA85-46CF-8A27-1DBD7011CCDB}
 	EndGlobalSection
 EndGlobal
