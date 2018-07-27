@@ -7,10 +7,11 @@ Solution to apply and share new knowledge and technologies and to serve as archi
 * Cross-Platform (Windows, Linux, macOS)
 * Visual Studio 2017
 * Visual Studio Code
-* SQL Server 2017
 * .NET Core 2.1.1
 * ASP.NET Core 2.1.1
 * Entity Framework Core 2.1.1
+* SQL Server 2017
+* MongoDB
 * C# 7.3
 * SPA (Single Page Application)
 * Angular 6.1.0
