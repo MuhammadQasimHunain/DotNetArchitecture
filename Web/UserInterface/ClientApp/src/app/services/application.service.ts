@@ -1,19 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { cache } from "../shared/utils/rxjs.utils";
+import { Cacheable } from "ngx-cacheable";
 
 @Injectable({ providedIn: "root" })
 export class ApplicationService {
-    data: any;
-    service = "Application";
-
     constructor(private readonly http: HttpClient) { }
 
+    @Cacheable()
     get() {
-        if (!this.data) {
-            this.data = this.http.get(this.service).pipe(cache);
-        }
-
-        return this.data;
+        return this.http.get("Application");
     }
 }
