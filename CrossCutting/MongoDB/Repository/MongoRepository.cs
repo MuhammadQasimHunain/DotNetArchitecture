@@ -31,14 +31,14 @@ namespace Solution.CrossCutting.MongoDB
             return Collection.InsertOneAsync(item);
         }
 
-        public void AddRange(IEnumerable<T> list)
+        public void AddRange(IEnumerable<T> items)
         {
-            Collection.InsertMany(list);
+            Collection.InsertMany(items);
         }
 
-        public Task AddRangeAsync(IEnumerable<T> list)
+        public Task AddRangeAsync(IEnumerable<T> items)
         {
-            return Collection.InsertManyAsync(list);
+            return Collection.InsertManyAsync(items);
         }
 
         public bool Any()

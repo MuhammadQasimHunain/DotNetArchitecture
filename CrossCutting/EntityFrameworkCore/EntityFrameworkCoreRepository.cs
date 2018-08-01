@@ -14,10 +14,10 @@ namespace Solution.CrossCutting.EntityFrameworkCore
         protected EntityFrameworkCoreRepository(DbContext context)
         {
             Context = context;
-            DisableAutoDetectChangesTracking();
+            Context.EnableDetectChangesLazyLoading(true);
         }
 
-        public IQueryable<T> Queryable => Set.AsNoTracking();
+        public IQueryable<T> Queryable => Set.AsQueryable();
 
         private DbSet<T> Set => Context.Set<T>();
 
@@ -33,14 +33,14 @@ namespace Solution.CrossCutting.EntityFrameworkCore
             await Set.AddAsync(item).ConfigureAwait(false);
         }
 
-        public void AddRange(IEnumerable<T> list)
+        public void AddRange(IEnumerable<T> items)
         {
-            Set.AddRange(list);
+            Set.AddRange(items);
         }
 
-        public async Task AddRangeAsync(IEnumerable<T> list)
+        public async Task AddRangeAsync(IEnumerable<T> items)
         {
-            await Set.AddRangeAsync(list).ConfigureAwait(false);
+            await Set.AddRangeAsync(items).ConfigureAwait(false);
         }
 
         public bool Any()
@@ -90,9 +90,9 @@ namespace Solution.CrossCutting.EntityFrameworkCore
 
         public void Delete(Expression<Func<T, bool>> where)
         {
-            EnableAutoDetectChangesTracking();
+            Context.EnableDetectChangesLazyLoading(true);
             Set.RemoveRange(Set.Where(where));
-            DisableAutoDetectChangesTracking();
+            Context.EnableDetectChangesLazyLoading(false);
         }
 
         public async Task DeleteAsync(object key)
@@ -107,92 +107,92 @@ namespace Solution.CrossCutting.EntityFrameworkCore
 
         public T FirstOrDefault(Expression<Func<T, bool>> where)
         {
-            return QueryableWhere(where).FirstOrDefault();
+            return Set.Where(where).FirstOrDefault();
         }
 
         public T FirstOrDefault(params Expression<Func<T, object>>[] include)
         {
-            return QueryableInclude(include).FirstOrDefault();
+            return Set.Include(include).FirstOrDefault();
         }
 
         public T FirstOrDefault(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
         {
-            return QueryableWhereInclude(where, include).FirstOrDefault();
+            return Set.Where(where).Include(include).FirstOrDefault();
         }
 
         public TResult FirstOrDefault<TResult>(Expression<Func<T, bool>> where)
         {
-            return QueryableWhere(where).Project<T, TResult>().FirstOrDefault();
+            return Set.Where(where).Project<T, TResult>().FirstOrDefault();
         }
 
         public TResult FirstOrDefault<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
         {
-            return QueryableWhereSelect(where, select).FirstOrDefault();
+            return Set.Where(where).Select(select).FirstOrDefault();
         }
 
         public Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> where)
         {
-            return QueryableWhere(where).FirstOrDefaultAsync();
+            return Set.Where(where).FirstOrDefaultAsync();
         }
 
         public Task<T> FirstOrDefaultAsync(params Expression<Func<T, object>>[] include)
         {
-            return QueryableInclude(include).FirstOrDefaultAsync();
+            return Set.Include(include).FirstOrDefaultAsync();
         }
 
         public Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
         {
-            return QueryableWhereInclude(where, include).FirstOrDefaultAsync();
+            return Set.Where(where).Include(include).FirstOrDefaultAsync();
         }
 
         public Task<TResult> FirstOrDefaultAsync<TResult>(Expression<Func<T, bool>> where)
         {
-            return QueryableWhere(where).Project<T, TResult>().FirstOrDefaultAsync();
+            return Set.Where(where).Project<T, TResult>().FirstOrDefaultAsync();
         }
 
         public Task<TResult> FirstOrDefaultAsync<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
         {
-            return QueryableWhereSelect(where, select).FirstOrDefaultAsync();
+            return Set.Where(where).Select(select).FirstOrDefaultAsync();
         }
 
         public T LastOrDefault(params Expression<Func<T, object>>[] include)
         {
-            return QueryableInclude(include).LastOrDefault();
+            return Set.Include(include).LastOrDefault();
         }
 
         public T LastOrDefault(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
         {
-            return QueryableWhereInclude(where, include).LastOrDefault();
+            return Set.Where(where).Include(include).LastOrDefault();
         }
 
         public TResult LastOrDefault<TResult>(Expression<Func<T, bool>> where)
         {
-            return QueryableWhere(where).Project<T, TResult>().LastOrDefault();
+            return Set.Where(where).Project<T, TResult>().LastOrDefault();
         }
 
         public TResult LastOrDefault<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
         {
-            return QueryableWhereSelect(where, select).LastOrDefault();
+            return Set.Where(where).Select(select).LastOrDefault();
         }
 
         public Task<T> LastOrDefaultAsync(params Expression<Func<T, object>>[] include)
         {
-            return QueryableInclude(include).LastOrDefaultAsync();
+            return Set.Include(include).LastOrDefaultAsync();
         }
 
         public Task<T> LastOrDefaultAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
         {
-            return QueryableWhereInclude(where, include).LastOrDefaultAsync();
+            return Set.Where(where).Include(include).LastOrDefaultAsync();
         }
 
         public Task<TResult> LastOrDefaultAsync<TResult>(Expression<Func<T, bool>> where)
         {
-            return QueryableWhere(where).Project<T, TResult>().LastOrDefaultAsync();
+            return Set.Where(where).Project<T, TResult>().LastOrDefaultAsync();
         }
 
         public Task<TResult> LastOrDefaultAsync<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
         {
-            return QueryableWhereSelect(where, select).LastOrDefaultAsync();
+            return Set.Where(where).Select(select).LastOrDefaultAsync();
         }
 
         public IEnumerable<T> List()
@@ -202,27 +202,27 @@ namespace Solution.CrossCutting.EntityFrameworkCore
 
         public IEnumerable<T> List(Expression<Func<T, bool>> where)
         {
-            return QueryableWhere(where).ToList();
+            return Set.Where(where).ToList();
         }
 
         public IEnumerable<T> List(params Expression<Func<T, object>>[] include)
         {
-            return QueryableInclude(include).ToList();
+            return Set.Include(include).ToList();
         }
 
         public IEnumerable<T> List(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
         {
-            return QueryableWhereInclude(where, include).ToList();
+            return Set.Where(where).Include(include).ToList();
         }
 
         public PagedList<T> List(PagedListParameters parameters, params Expression<Func<T, object>>[] include)
         {
-            return new PagedList<T>(QueryableInclude(include), parameters);
+            return new PagedList<T>(Set.Include(include), parameters);
         }
 
         public PagedList<T> List(PagedListParameters parameters, Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
         {
-            return new PagedList<T>(QueryableWhereInclude(where, include), parameters);
+            return new PagedList<T>(Set.Where(where).Include(include), parameters);
         }
 
         public async Task<IEnumerable<T>> ListAsync()
@@ -232,17 +232,17 @@ namespace Solution.CrossCutting.EntityFrameworkCore
 
         public async Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> where)
         {
-            return await QueryableWhere(where).ToListAsync().ConfigureAwait(false);
+            return await Set.Where(where).ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<T>> ListAsync(params Expression<Func<T, object>>[] include)
         {
-            return await QueryableInclude(include).ToListAsync().ConfigureAwait(false);
+            return await Set.Include(include).ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
         {
-            return await QueryableWhereInclude(where, include).ToListAsync().ConfigureAwait(false);
+            return await Set.Where(where).Include(include).ToListAsync().ConfigureAwait(false);
         }
 
         public T Select(object key)
@@ -257,42 +257,42 @@ namespace Solution.CrossCutting.EntityFrameworkCore
 
         public T SingleOrDefault(Expression<Func<T, bool>> where)
         {
-            return QueryableWhere(where).SingleOrDefault();
+            return Set.Where(where).SingleOrDefault();
         }
 
         public T SingleOrDefault(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
         {
-            return QueryableWhereInclude(where, include).SingleOrDefault();
+            return Set.Where(where).Include(include).SingleOrDefault();
         }
 
         public TResult SingleOrDefault<TResult>(Expression<Func<T, bool>> where)
         {
-            return QueryableWhere(where).Project<T, TResult>().SingleOrDefault();
+            return Set.Where(where).Project<T, TResult>().SingleOrDefault();
         }
 
         public TResult SingleOrDefault<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
         {
-            return QueryableWhereSelect(where, select).SingleOrDefault();
+            return Set.Where(where).Select(select).SingleOrDefault();
         }
 
         public Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> where)
         {
-            return QueryableWhere(where).SingleOrDefaultAsync();
+            return Set.Where(where).SingleOrDefaultAsync();
         }
 
         public Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] include)
         {
-            return QueryableWhereInclude(where, include).SingleOrDefaultAsync();
+            return Set.Where(where).Include(include).SingleOrDefaultAsync();
         }
 
         public Task<TResult> SingleOrDefaultAsync<TResult>(Expression<Func<T, bool>> where)
         {
-            return QueryableWhere(where).Project<T, TResult>().SingleOrDefaultAsync();
+            return Set.Where(where).Project<T, TResult>().SingleOrDefaultAsync();
         }
 
         public Task<TResult> SingleOrDefaultAsync<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
         {
-            return QueryableWhereSelect(where, select).SingleOrDefaultAsync();
+            return Set.Where(where).Select(select).SingleOrDefaultAsync();
         }
 
         public void Update(T item, object key)
@@ -303,44 +303,6 @@ namespace Solution.CrossCutting.EntityFrameworkCore
         public async Task UpdateAsync(T item, object key)
         {
             await Task.Run(() => Update(item, key)).ConfigureAwait(false);
-        }
-
-        private static IQueryable<T> Include(IQueryable<T> queryable, Expression<Func<T, object>>[] properties)
-        {
-            properties?.ToList().ForEach(property => queryable = queryable.Include(property));
-            return queryable;
-        }
-
-        private void DisableAutoDetectChangesTracking()
-        {
-            Context.ChangeTracker.AutoDetectChangesEnabled = false;
-            Context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-        }
-
-        private void EnableAutoDetectChangesTracking()
-        {
-            Context.ChangeTracker.AutoDetectChangesEnabled = true;
-            Context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
-        }
-
-        private IQueryable<T> QueryableInclude(Expression<Func<T, object>>[] include)
-        {
-            return Include(Queryable, include);
-        }
-
-        private IQueryable<T> QueryableWhere(Expression<Func<T, bool>> where)
-        {
-            return Queryable.Where(where);
-        }
-
-        private IQueryable<T> QueryableWhereInclude(Expression<Func<T, bool>> where, Expression<Func<T, object>>[] include)
-        {
-            return Include(QueryableWhere(where), include);
-        }
-
-        private IQueryable<TResult> QueryableWhereSelect<TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> select)
-        {
-            return QueryableWhere(where).Select(select);
         }
     }
 }

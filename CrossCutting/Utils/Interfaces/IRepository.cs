@@ -11,9 +11,9 @@ namespace Solution.CrossCutting.Utils
 
         Task AddAsync(T item);
 
-        void AddRange(IEnumerable<T> list);
+        void AddRange(IEnumerable<T> items);
 
-        Task AddRangeAsync(IEnumerable<T> list);
+        Task AddRangeAsync(IEnumerable<T> items);
 
         bool Any();
 
