@@ -13,7 +13,6 @@ namespace Solution.CrossCutting.MongoDB
         protected MongoRepository(IMongoContext context)
         {
             Database = context.Database;
-
             Collection = Database.GetCollection<T>(typeof(T).Name);
         }
 
