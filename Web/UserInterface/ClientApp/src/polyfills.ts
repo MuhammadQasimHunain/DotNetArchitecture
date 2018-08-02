@@ -1,7 +1,8 @@
-import "core-js/es7/reflect";
-import "zone.js/dist/zone";
+/* BROWSER */
 
-/* IE9, IE10 and IE11 */
+import "core-js/es7/reflect";
+
+/* IE9, IE10, IE11 */
 // import "core-js/es6/array";
 // import "core-js/es6/date";
 // import "core-js/es6/function";
@@ -17,11 +18,13 @@ import "zone.js/dist/zone";
 // import "core-js/es6/symbol";
 // import "core-js/es6/weak-map";
 
-/* IE10 and IE11 for NgClass support on SVG elements */
-// import "classlist.js";  // Run `npm install --save classlist.js`.
+/* IE10, IE11 for NgClass on SVG elements */
+// import "classlist.js"; // npm install --save classlist.js
 
-/* IE10 and IE11 for Reflect API. */
+/* IE10, IE11 for Reflect API */
 // import "core-js/es6/reflect";
 
-/* Web Animations */
-// import "web-animations-js";  // Run `npm install --save web-animations-js`.
+/* ZONEJS */
+import "zone.js/dist/zone";
+
+/* APPLICATION */
