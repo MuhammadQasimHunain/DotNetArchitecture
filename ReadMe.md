@@ -14,7 +14,7 @@ Solution to apply and share new knowledge and technologies and to serve as archi
 * MongoDB
 * C# 7.3
 * SPA (Single Page Application)
-* Angular 6.1.0
+* Angular 6.1.1
 * Typescript 2.9.2
 * HTML5
 * CSS3
