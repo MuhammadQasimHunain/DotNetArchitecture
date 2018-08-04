@@ -23,7 +23,7 @@ namespace Solution.Web.UserInterface.Controllers
         [HttpPost]
         public IEnumerable<FileModel> Upload()
         {
-            return Request.UploadFiles(Path.Combine(HostingEnvironment.ContentRootPath, nameof(Upload)));
+            return Request.Upload(Path.Combine(HostingEnvironment.ContentRootPath, nameof(Upload)));
         }
     }
 }

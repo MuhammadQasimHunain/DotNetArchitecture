@@ -9,7 +9,7 @@ namespace Solution.CrossCutting.AspNetCore.Extensions
 {
     public static class HttpRequestExtensions
     {
-        public static IEnumerable<FileModel> UploadFiles(this HttpRequest request, string directory)
+        public static IEnumerable<FileModel> Upload(this HttpRequest request, string directory)
         {
             if (!Directory.Exists(directory))
             {
